@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -18,6 +19,19 @@ class HomeViewController: UIViewController {
         
     }
 
+    @IBAction func logout_TouchUpInside(_ sender: Any) {
+       
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+        let storyboard = UIStoryboard(name: "Start", bundle: nil)
+        let SignInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
+        self.present(SignInVC, animated: true, completion: nil)
+        
+    }
  
 
 }
