@@ -66,6 +66,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A45BDD71E76E0830095F1BB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4AE5BF511E75CB2E00E74137 /* Start.storyboard */,
+				4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */,
+				4A45BDCD1E76C2400095F1BB /* Home.storyboard */,
+				4A45BDCF1E76C2550095F1BB /* Discover.storyboard */,
+				4A45BDD11E76C2640095F1BB /* Camera.storyboard */,
+				4A45BDD31E76C27F0095F1BB /* Activity.storyboard */,
+				4A45BDD51E76C2890095F1BB /* Profile.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4A45BDD81E76E0950095F1BB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4AE5BF531E75CC0000E74137 /* SignInViewController.swift */,
+				4AE5BF551E75CFFD00E74137 /* SignUpViewController.swift */,
+				4AE5BF571E75DCFF00E74137 /* HomeViewController.swift */,
+				4AE5BF591E75DD1B00E74137 /* DiscoverViewController.swift */,
+				4AE5BF5B1E75DD2800E74137 /* CameraViewController.swift */,
+				4AE5BF5D1E75DD3A00E74137 /* ActivityViewController.swift */,
+				4AE5BF5F1E75DD5000E74137 /* ProfileViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		4A6F50511E75CA0500E4FC84 = {
 			isa = PBXGroup;
 			children = (
@@ -87,22 +115,10 @@
 		4A6F505C1E75CA0500E4FC84 /* DevstagramPro2 */ = {
 			isa = PBXGroup;
 			children = (
+				4A45BDD81E76E0950095F1BB /* ViewControllers */,
+				4A45BDD71E76E0830095F1BB /* Storyboards */,
 				4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */,
-				4AE5BF531E75CC0000E74137 /* SignInViewController.swift */,
-				4AE5BF551E75CFFD00E74137 /* SignUpViewController.swift */,
-				4AE5BF571E75DCFF00E74137 /* HomeViewController.swift */,
-				4AE5BF591E75DD1B00E74137 /* DiscoverViewController.swift */,
-				4AE5BF5B1E75DD2800E74137 /* CameraViewController.swift */,
-				4AE5BF5D1E75DD3A00E74137 /* ActivityViewController.swift */,
-				4AE5BF5F1E75DD5000E74137 /* ProfileViewController.swift */,
 				4A6F50641E75CA0500E4FC84 /* Assets.xcassets */,
-				4AE5BF511E75CB2E00E74137 /* Start.storyboard */,
-				4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */,
-				4A45BDCD1E76C2400095F1BB /* Home.storyboard */,
-				4A45BDCF1E76C2550095F1BB /* Discover.storyboard */,
-				4A45BDD11E76C2640095F1BB /* Camera.storyboard */,
-				4A45BDD31E76C27F0095F1BB /* Activity.storyboard */,
-				4A45BDD51E76C2890095F1BB /* Profile.storyboard */,
 				4A6F50691E75CA0500E4FC84 /* Info.plist */,
 				4A6F506F1E75CA3D00E4FC84 /* GoogleService-Info.plist */,
 				4A6F50661E75CA0500E4FC84 /* LaunchScreen.storyboard */,

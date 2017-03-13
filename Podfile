@@ -6,5 +6,8 @@ target 'DevstagramPro2' do
   use_frameworks!
 
   # Pods for DevstagramPro2
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 end
