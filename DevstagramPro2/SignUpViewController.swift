@@ -17,11 +17,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signUpButton.setTitleColor(UIColor.lightText, for: .normal)
+        signUpButton.isEnabled = false
         
         usernameTextField.backgroundColor = UIColor.clear
         usernameTextField.tintColor = .white
@@ -61,6 +65,26 @@ class SignUpViewController: UIViewController {
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
         
+        handleTextField()
+        
+    }
+    
+    func handleTextField() {
+        usernameTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+    }
+    
+    func textFieldDidChange() {
+        guard let username = usernameTextField.text, !username.isEmpty, let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
+            
+            signUpButton.setTitleColor(UIColor.lightText, for: .normal)
+            signUpButton.isEnabled = false
+            return
+        }
+        
+        signUpButton.setTitleColor(UIColor.white, for: .normal)
+        signUpButton.isEnabled = true
     }
     
     
@@ -88,19 +112,25 @@ class SignUpViewController: UIViewController {
                     if error != nil {
                         return
                     }
-        
+                    
                     let profileImageUrl = metadata?.downloadURL()?.absoluteString
                     
-                    let ref = FIRDatabase.database().reference()
-                    let usersReference = ref.child("users")
-                    let newUserReference = usersReference.child(uid!)
-                    newUserReference.setValue(["username": self.usernameTextField.text!, "email": self.emailTextField.text!, "profileImageUrl": profileImageUrl])
-                    
+                    self.setUserInfomation(profileImageUrl: profileImageUrl!, username: self.usernameTextField.text!, email: self.emailTextField.text!, uid: uid!)
                 })
             }
             
             
         })
+    }
+    
+    
+    func setUserInfomation(profileImageUrl: String, username: String, email: String, uid:String) {
+        
+        let ref = FIRDatabase.database().reference()
+        let usersReference = ref.child("users")
+        let newUserReference = usersReference.child(uid)
+        newUserReference.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
+
     }
     
 }
