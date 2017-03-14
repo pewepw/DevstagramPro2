@@ -59,8 +59,8 @@ class SignInViewController: UIViewController {
     }
     
     func handleTextField() {
-        emailTextField.addTarget(self, action: #selector(SignInViewController.textFieldDidChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(SignInViewController.textFieldDidChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
     }
     
     func textFieldDidChange() {

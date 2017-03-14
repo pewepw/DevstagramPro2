@@ -75,9 +75,9 @@ class SignUpViewController: UIViewController {
     }
     
     func handleTextField() {
-        usernameTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
     }
     
     func textFieldDidChange() {
@@ -128,15 +128,11 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            
             profileImage.image = image
-            
             selectedImage = image
         }
         
-        
         dismiss(animated: true, completion: nil)
-        
         
     }
     
