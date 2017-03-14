@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A1A7D761E7809E400933915 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A7D751E7809E400933915 /* AuthService.swift */; };
 		4A45BDCC1E76C1FF0095F1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */; };
 		4A45BDCE1E76C2400095F1BB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCD1E76C2400095F1BB /* Home.storyboard */; };
 		4A45BDD01E76C2550095F1BB /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCF1E76C2550095F1BB /* Discover.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A1A7D751E7809E400933915 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4A45BDCD1E76C2400095F1BB /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4A45BDCF1E76C2550095F1BB /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -115,9 +117,10 @@
 		4A6F505C1E75CA0500E4FC84 /* DevstagramPro2 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */,
+				4A1A7D751E7809E400933915 /* AuthService.swift */,
 				4A45BDD81E76E0950095F1BB /* ViewControllers */,
 				4A45BDD71E76E0830095F1BB /* Storyboards */,
-				4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */,
 				4A6F50641E75CA0500E4FC84 /* Assets.xcassets */,
 				4A6F50691E75CA0500E4FC84 /* Info.plist */,
 				4A6F506F1E75CA3D00E4FC84 /* GoogleService-Info.plist */,
@@ -277,6 +280,7 @@
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,
 				4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */,
 				4AE5BF541E75CC0000E74137 /* SignInViewController.swift in Sources */,
+				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
 				4AE5BF581E75DCFF00E74137 /* HomeViewController.swift in Sources */,
 				4AE5BF5E1E75DD3A00E74137 /* ActivityViewController.swift in Sources */,
 				4AE5BF5A1E75DD1B00E74137 /* DiscoverViewController.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class SignInViewController: UIViewController {
     
@@ -17,6 +18,8 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SVProgressHUD.setMaximumDismissTimeInterval(1.5)
         
         signInButton.setTitleColor(UIColor.lightText, for: .normal)
         signInButton.isEnabled = false
@@ -38,9 +41,13 @@ class SignInViewController: UIViewController {
         bottomLayer2.frame = CGRect(x: 0, y: 29, width: 1000, height: 0.6)
         bottomLayer2.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 25/255, alpha: 1).cgColor
         passwordTextField.layer.addSublayer(bottomLayer2)
-
+        
         handleTextField()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,21 +74,27 @@ class SignInViewController: UIViewController {
         signInButton.setTitleColor(UIColor.white, for: .normal)
         signInButton.isEnabled = true
     }
-
+    
     @IBAction func signInButton_TouchUpInside(_ sender: Any) {
-        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            
+        
+        view.endEditing(true)
+        
+        SVProgressHUD.show()
+        
+        AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            SVProgressHUD.showSuccess(withStatus: "Success")
             self.performSegue(withIdentifier: "signInToTabbarVC", sender: nil)
+        }, onError: { error in
+            SVProgressHUD.showError(withStatus: error!)
             
         })
+        
+        
     }
-    
-    
 }
+
+
+
 
 
 

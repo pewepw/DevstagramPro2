@@ -170,7 +170,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ava" translatesAutoresizingMaskIntoConstraints="NO" id="LTy-bP-R61">
-                                <rect key="frame" x="147" y="120" width="80" height="80"/>
+                                <rect key="frame" x="147" y="100" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="4Bv-Qm-Bef"/>
                                     <constraint firstAttribute="height" constant="80" id="V9g-Y9-oCS"/>
@@ -187,7 +187,7 @@
                             <constraint firstAttribute="trailing" secondItem="iDH-ea-ohA" secondAttribute="trailing" constant="20" id="hgo-dr-CAu"/>
                             <constraint firstItem="LTy-bP-R61" firstAttribute="centerX" secondItem="07L-Nd-b6H" secondAttribute="centerX" id="lkK-MM-NXw"/>
                             <constraint firstAttribute="trailing" secondItem="ykx-fj-cbW" secondAttribute="trailing" id="wJC-2f-j9J"/>
-                            <constraint firstItem="LTy-bP-R61" firstAttribute="top" secondItem="577-fL-4TG" secondAttribute="bottom" constant="100" id="ym7-9y-Ltm"/>
+                            <constraint firstItem="LTy-bP-R61" firstAttribute="top" secondItem="577-fL-4TG" secondAttribute="bottom" constant="80" id="ym7-9y-Ltm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -216,6 +216,6 @@
         <image name="ava" width="1290" height="1290"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Jqf-WG-Eug"/>
+        <segue reference="MaJ-eB-kMY"/>
     </inferredMetricsTieBreakers>
 </document>
