@@ -25,7 +25,13 @@ class HomeTableViewCell: UITableViewCell {
             updateView()
         }
     }
-
+    
+    var user: User? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
     func updateView() {
         
         captionLabel.text = post?.caption
@@ -40,32 +46,31 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func setupUserInfo() {
-        if let uid = post?.uid {
-            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dict = snapshot.value as? [String: Any] {
-                    let user = User.transformUser(dict: dict)
-                    self.nameLabel.text = user.username
-                    if let photoUrlString = user.profileImageUrl {
-                        let photoUrl = URL(string: photoUrlString)
-                        self.profileImageView.sd_setImage(with: photoUrl)
-                    }
-                    
-                }
-                
-            })
+        
+        nameLabel.text = user?.username
+        
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "ava"))
         }
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        nameLabel.text = ""
+        captionLabel.text = ""
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImageView.image = UIImage(named: "ava")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
