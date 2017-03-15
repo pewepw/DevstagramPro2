@@ -16,6 +16,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var removeButton: UIBarButtonItem!
     
     var selectedImage: UIImage?
     
@@ -26,7 +27,31 @@ class CameraViewController: UIViewController {
         photo.addGestureRecognizer(tapGesture)
         photo.isUserInteractionEnabled = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        handlePost()
+    }
+    
+    
+    func handlePost() {
+        if selectedImage != nil {
+            shareButton.setTitleColor(UIColor.white, for: .normal)
+            shareButton.backgroundColor = UIColor.black
+            shareButton.isEnabled = true
+            removeButton.isEnabled = true
+        } else {
+            shareButton.backgroundColor = UIColor.lightGray
+            shareButton.isEnabled = false
+            removeButton.isEnabled = false
+        }
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func handleSelectPhoto() {
@@ -37,6 +62,7 @@ class CameraViewController: UIViewController {
     
     @IBAction func shareButton_TouchUpInside(_ sender: Any) {
         
+        view.endEditing(true)
         SVProgressHUD.show()
         
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
@@ -62,12 +88,19 @@ class CameraViewController: UIViewController {
         
     }
     
+    
+    
+    @IBAction func remove_TouchUpInside(_ sender: Any) {
+        clean()
+        handlePost()
+    }
+    
     func sendDataToDatabase(photoUrl: String) {
         let ref = FIRDatabase.database().reference()
         let postsReference = ref.child("users")
         let newPostId = postsReference.childByAutoId().key
         let newPostsReference = postsReference.child(newPostId)
-        newPostsReference.setValue(["photoUrl": photoUrl]) { (error, ref) in
+        newPostsReference.setValue(["photoUrl": photoUrl, "caption": captionTextView.text!]) { (error, ref) in
             if error != nil {
                 
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
@@ -76,9 +109,19 @@ class CameraViewController: UIViewController {
             }
             
             SVProgressHUD.showSuccess(withStatus: "Success")
+            self.clean()
+            self.tabBarController?.selectedIndex = 0
         }
         
     }
+    
+    func clean() {
+        self.captionTextView.text = ""
+        self.photo.image = UIImage(named: "Placeholder-image")
+        self.selectedImage = nil
+
+    }
+    
 }
 
     extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

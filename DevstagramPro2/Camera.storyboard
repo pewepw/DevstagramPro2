@@ -31,11 +31,10 @@
                                             <constraint firstAttribute="height" constant="80" id="VES-9c-osU"/>
                                         </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yft-xX-n3R">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yft-xX-n3R">
                                         <rect key="frame" x="96" y="10" width="271" height="80"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -75,10 +74,17 @@
                             <constraint firstAttribute="trailing" secondItem="2gN-bc-VnB" secondAttribute="trailing" id="pEM-JP-2mg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Dif-ae-9wR"/>
+                    <navigationItem key="navigationItem" id="Dif-ae-9wR">
+                        <barButtonItem key="leftBarButtonItem" title="Remove" id="01Z-ll-BRX">
+                            <connections>
+                                <action selector="remove_TouchUpInside:" destination="m6E-Rs-aDr" id="2Fn-rq-9Pf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="captionTextView" destination="yft-xX-n3R" id="3e4-HP-DlI"/>
                         <outlet property="photo" destination="62e-Mx-X2N" id="cJm-pk-8u8"/>
+                        <outlet property="removeButton" destination="01Z-ll-BRX" id="5Oz-I9-fvB"/>
                         <outlet property="shareButton" destination="EDn-j9-fmh" id="pDp-JU-2hA"/>
                     </connections>
                 </viewController>

@@ -20,7 +20,29 @@
                     <view key="view" contentMode="scaleToFill" id="r60-iS-0wK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZbJ-BY-61A">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="44" id="JZS-uY-7B4">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JZS-uY-7B4" id="zMn-nX-4vv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZbJ-BY-61A" firstAttribute="leading" secondItem="r60-iS-0wK" secondAttribute="leading" id="CBn-Qi-ZDk"/>
+                            <constraint firstItem="ZbJ-BY-61A" firstAttribute="top" secondItem="r60-iS-0wK" secondAttribute="top" id="QDu-Fd-X8p"/>
+                            <constraint firstAttribute="trailing" secondItem="ZbJ-BY-61A" secondAttribute="trailing" id="ZCN-jh-RSP"/>
+                            <constraint firstAttribute="bottom" secondItem="ZbJ-BY-61A" secondAttribute="bottom" id="m40-zL-63X"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="55m-7J-dUJ">
                         <barButtonItem key="leftBarButtonItem" title="LogOut" id="vDa-fZ-2EW">
@@ -29,10 +51,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="ZbJ-BY-61A" id="Qnh-8W-udM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sbf-b9-w1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-452" y="1628"/>
+            <point key="canvasLocation" x="-452" y="1627.7361319340332"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y0r-Se-GNT">
