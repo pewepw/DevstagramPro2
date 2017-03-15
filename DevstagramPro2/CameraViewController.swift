@@ -97,7 +97,7 @@ class CameraViewController: UIViewController {
     
     func sendDataToDatabase(photoUrl: String) {
         let ref = FIRDatabase.database().reference()
-        let postsReference = ref.child("users")
+        let postsReference = ref.child("posts")
         let newPostId = postsReference.childByAutoId().key
         let newPostsReference = postsReference.child(newPostId)
         newPostsReference.setValue(["photoUrl": photoUrl, "caption": captionTextView.text!]) { (error, ref) in
