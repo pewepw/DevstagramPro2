@@ -25,19 +25,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="509" id="JZS-uY-7B4">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="509"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="510" id="JZS-uY-7B4" customClass="HomeTableViewCell" customModule="DevstagramPro2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="510"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JZS-uY-7B4" id="zMn-nX-4vv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ava" translatesAutoresizingMaskIntoConstraints="NO" id="sqz-lz-ven">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ava" translatesAutoresizingMaskIntoConstraints="NO" id="sqz-lz-ven">
                                                     <rect key="frame" x="15" y="15" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="MLA-cU-c2J"/>
                                                         <constraint firstAttribute="height" constant="36" id="Mr1-CY-y4R"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="18"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-mn-JRg">
                                                     <rect key="frame" x="59" y="25" width="36" height="16"/>
@@ -45,7 +50,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cmz-Re-t3L">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cmz-Re-t3L">
                                                     <rect key="frame" x="0.0" y="59" width="375" height="320"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="320" id="ST0-Wi-CwS"/>
@@ -78,7 +83,7 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmQ-Rh-svR">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmQ-Rh-svR">
                                                     <rect key="frame" x="15" y="466" width="345" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -107,12 +112,23 @@
                                                 <constraint firstItem="6rv-mA-k27" firstAttribute="leading" secondItem="RbS-SY-z2V" secondAttribute="trailing" constant="20" id="lQy-aW-bTv"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cmz-Re-t3L" secondAttribute="trailing" id="lzK-qf-Tlg"/>
                                                 <constraint firstItem="Pig-mn-JRg" firstAttribute="centerY" secondItem="sqz-lz-ven" secondAttribute="centerY" id="md7-qG-ZcX"/>
+                                                <constraint firstAttribute="bottom" secondItem="YmQ-Rh-svR" secondAttribute="bottom" constant="28" id="pPC-zs-lXz"/>
                                                 <constraint firstItem="DKl-JM-vHZ" firstAttribute="leading" secondItem="zMn-nX-4vv" secondAttribute="leading" constant="15" id="pkw-8K-7KL"/>
                                                 <constraint firstItem="6rv-mA-k27" firstAttribute="width" secondItem="RbS-SY-z2V" secondAttribute="width" id="r9c-zA-gJS"/>
                                                 <constraint firstItem="YmQ-Rh-svR" firstAttribute="top" secondItem="64P-5E-m2Z" secondAttribute="bottom" constant="5" id="taL-IV-I1h"/>
                                                 <constraint firstItem="DKl-JM-vHZ" firstAttribute="top" secondItem="6rv-mA-k27" secondAttribute="bottom" constant="15" id="wYR-PJ-Sjc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="YmQ-Rh-svR" id="yrY-ri-dLq"/>
+                                            <outlet property="commentImageView" destination="RbS-SY-z2V" id="xOD-9J-7gz"/>
+                                            <outlet property="likeCountButton" destination="64P-5E-m2Z" id="w23-Yi-C6Z"/>
+                                            <outlet property="likeImageView" destination="9v0-vi-2gh" id="UVe-hZ-zUW"/>
+                                            <outlet property="nameLabel" destination="Pig-mn-JRg" id="TIk-ir-NGI"/>
+                                            <outlet property="postImageView" destination="Cmz-Re-t3L" id="O74-m2-vy8"/>
+                                            <outlet property="profileImageView" destination="sqz-lz-ven" id="SH7-xK-jXv"/>
+                                            <outlet property="shareImageView" destination="6rv-mA-k27" id="skd-DD-O6a"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

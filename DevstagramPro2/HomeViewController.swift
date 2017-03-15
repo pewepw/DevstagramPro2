@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -18,6 +19,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = 510
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.dataSource = self
         loadPosts()
@@ -62,8 +66,12 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        cell.textLabel?.text = posts[indexPath.row].caption
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
+        let post = posts[indexPath.row]
+        
+        cell.post = post
+        
+        
         return cell
     }
     
