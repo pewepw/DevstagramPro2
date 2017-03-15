@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -28,12 +29,30 @@ class HomeTableViewCell: UITableViewCell {
     func updateView() {
         
         captionLabel.text = post?.caption
-        profileImageView.image = UIImage(named: "like")
-        nameLabel.text = "Steve"
         
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
             postImageView.sd_setImage(with: photoUrl)
+        }
+        
+        setupUserInfo()
+        
+    }
+    
+    func setupUserInfo() {
+        if let uid = post?.uid {
+            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dict = snapshot.value as? [String: Any] {
+                    let user = User.transformUser(dict: dict)
+                    self.nameLabel.text = user.username
+                    if let photoUrlString = user.profileImageUrl {
+                        let photoUrl = URL(string: photoUrlString)
+                        self.profileImageView.sd_setImage(with: photoUrl)
+                    }
+                    
+                }
+                
+            })
         }
     }
     
