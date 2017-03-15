@@ -29,10 +29,8 @@ class HomeViewController: UIViewController {
     func loadPosts() {
         FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                let caption = dict["caption"] as! String
-                let photoUrl = dict["photoUrl"] as! String
-                let post = Post(caption: caption, photoUrl: photoUrl)
-                self.posts.append(post)
+                let newPost = Post.transformPostPhoto(dict: dict)
+                self.posts.append(newPost)
                 self.tableView.reloadData()
             }
         })
