@@ -55,7 +55,7 @@ class AuthService {
         })
     }
     
-    static func setUserInfomation(profileImageUrl: String, username: String, email: String, uid:String, onSuccess: @escaping () -> Void) {
+    static func setUserInfomation(profileImageUrl: String, username: String, email: String, uid: String, onSuccess: @escaping () -> Void) {
         
         let ref = FIRDatabase.database().reference()
         let usersReference = ref.child("users")

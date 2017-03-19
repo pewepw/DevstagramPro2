@@ -14,6 +14,7 @@ import SDWebImage
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var posts = [Post]()
     var users = [User]()
@@ -44,12 +45,19 @@ class HomeViewController: UIViewController {
     }
     
     func loadPosts() {
+        
+        activityIndicatorView.startAnimating()
+        
         FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let newPost = Post.transformPostPhoto(dict: dict)
                 
                 self.fetchUser(uid: newPost.uid!, completed: {
                     self.posts.append(newPost)
+                    
+                    self.activityIndicatorView.stopAnimating()
+                    self.activityIndicatorView.isHidden = true
+                    
                     self.tableView.reloadData()
                 })
                 
@@ -58,6 +66,13 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
+        
+    }
+
     
     
     @IBAction func logout_TouchUpInside(_ sender: Any) {
@@ -74,6 +89,9 @@ class HomeViewController: UIViewController {
         
     }
     
+    @IBAction func fakeButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "commentSegue", sender: nil)
+    }
     
 }
 
