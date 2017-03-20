@@ -22,10 +22,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
         tableView.estimatedRowHeight = 510
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.dataSource = self
         loadPosts()
         
      
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func fakeButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "commentSegue", sender: nil)
+        self.performSegue(withIdentifier: "CommentSegue", sender: nil)
     }
     
 }
