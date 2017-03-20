@@ -13,10 +13,11 @@ import SVProgressHUD
 
 class CommentViewController: UIViewController {
     
-
+    
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var constraintToBottom: NSLayoutConstraint!
     
     let postId = "-KfHtdSpw7UyLDAiju1d"
     var comments = [Comment]()
@@ -37,6 +38,29 @@ class CommentViewController: UIViewController {
         handleTextField()
         loadComments()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        //print(keyboardFrame)
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToBottom.constant = keyboardFrame!.height
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     func loadComments() {
@@ -54,7 +78,7 @@ class CommentViewController: UIViewController {
                     })
                     
                 }
-
+                
             })
         })
     }
@@ -70,7 +94,7 @@ class CommentViewController: UIViewController {
         })
         
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -108,7 +132,8 @@ class CommentViewController: UIViewController {
             })
             
             self.empty()
-           
+            self.view.endEditing(true)
+            
         }
         
     }
@@ -122,7 +147,7 @@ class CommentViewController: UIViewController {
     func handleTextField() {
         commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
     }
-
+    
     
     func textFieldDidChange() {
         if let commentText = commentTextField.text, !commentText.isEmpty {
@@ -136,7 +161,7 @@ class CommentViewController: UIViewController {
         sendButton.setTitleColor(UIColor.lightGray , for: .normal)
         sendButton.isEnabled = false
     }
-
+    
     
 }
 
