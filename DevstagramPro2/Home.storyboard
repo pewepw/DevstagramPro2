@@ -90,14 +90,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmI-ib-1Rb">
-                                                    <rect key="frame" x="212" y="294" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="fakeButton:" destination="Aug-5m-Ix0" eventType="touchUpInside" id="8AK-M6-6x7"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="sqz-lz-ven" firstAttribute="leading" secondItem="zMn-nX-4vv" secondAttribute="leading" constant="15" id="0db-qz-BBk"/>

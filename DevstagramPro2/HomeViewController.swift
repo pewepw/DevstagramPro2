@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
         
         FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                let newPost = Post.transformPostPhoto(dict: dict)
+                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
                 
                 self.fetchUser(uid: newPost.uid!, completed: {
                     self.posts.append(newPost)
@@ -66,12 +66,12 @@ class HomeViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.tabBarController?.tabBar.isHidden = false
-        
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        self.tabBarController?.tabBar.isHidden = false
+//        
+//    }
 
     
     
@@ -89,10 +89,13 @@ class HomeViewController: UIViewController {
         
     }
     
-    @IBAction func fakeButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "CommentSegue", sender: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CommentSegue" {
+            let commentVC = segue.destination as! CommentViewController
+            let postId = sender as! String
+            commentVC.postId = postId
+        }
     }
-    
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -108,6 +111,7 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.post = post
         cell.user = user
+        cell.homeVC = self
         
         return cell
     }

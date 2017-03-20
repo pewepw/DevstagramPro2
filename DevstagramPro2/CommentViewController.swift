@@ -19,7 +19,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var constraintToBottom: NSLayoutConstraint!
     
-    let postId = "-KfHtdSpw7UyLDAiju1d"
+    var postId: String!
     var comments = [Comment]()
     var users = [User]()
     
@@ -27,6 +27,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Comment"
         tableView.dataSource = self
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -66,8 +67,8 @@ class CommentViewController: UIViewController {
     func loadComments() {
         let postCommentRef = FIRDatabase.database().reference().child("post-comments").child(self.postId)
         postCommentRef.observe(.childAdded, with: { (snapshot) in
-            print("**********")
-            print(snapshot.key)
+            //print("**********")
+            //print(snapshot.key)
             FIRDatabase.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment) in
                 if let dict = snapshotComment.value as? [String: Any] {
                     let newComment = Comment.transformComment(dict: dict)
@@ -101,6 +102,11 @@ class CommentViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func sendButton(_ sender: Any) {
