@@ -24,6 +24,11 @@
 		4AA33C051E8022FA0048DD6B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA33C041E8022FA0048DD6B /* Comment.swift */; };
 		4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB37CB41E7E697200552C38 /* CommentViewController.swift */; };
 		4AB37CB71E7E699C00552C38 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */; };
+		4ACCF83E1E80E90400B2523C /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF83D1E80E90400B2523C /* PostApi.swift */; };
+		4ACCF8401E80EEB600B2523C /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF83F1E80EEB600B2523C /* UserApi.swift */; };
+		4ACCF8421E80F25000B2523C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF8411E80F25000B2523C /* Api.swift */; };
+		4ACCF8441E80F4BF00B2523C /* CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF8431E80F4BF00B2523C /* CommentApi.swift */; };
+		4ACCF8461E80F7DA00B2523C /* Post_CommentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */; };
 		4AE5BF521E75CB2E00E74137 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AE5BF511E75CB2E00E74137 /* Start.storyboard */; };
 		4AE5BF541E75CC0000E74137 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5BF531E75CC0000E74137 /* SignInViewController.swift */; };
 		4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5BF551E75CFFD00E74137 /* SignUpViewController.swift */; };
@@ -55,6 +60,11 @@
 		4AA33C041E8022FA0048DD6B /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4AB37CB41E7E697200552C38 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		4ACCF83D1E80E90400B2523C /* PostApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
+		4ACCF83F1E80EEB600B2523C /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		4ACCF8411E80F25000B2523C /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		4ACCF8431E80F4BF00B2523C /* CommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentApi.swift; sourceTree = "<group>"; };
+		4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post_CommentApi.swift; sourceTree = "<group>"; };
 		4AE5BF511E75CB2E00E74137 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		4AE5BF531E75CC0000E74137 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4AE5BF551E75CFFD00E74137 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +160,11 @@
 				4A91D3E91E79ABAD00CF8C73 /* User.swift */,
 				4A91D3E41E7967A700CF8C73 /* Post.swift */,
 				4AA33C041E8022FA0048DD6B /* Comment.swift */,
+				4ACCF8411E80F25000B2523C /* Api.swift */,
+				4ACCF83F1E80EEB600B2523C /* UserApi.swift */,
+				4ACCF83D1E80E90400B2523C /* PostApi.swift */,
+				4ACCF8431E80F4BF00B2523C /* CommentApi.swift */,
+				4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -311,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACCF8421E80F25000B2523C /* Api.swift in Sources */,
 				4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */,
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,
 				4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */,
@@ -318,7 +334,11 @@
 				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
 				4AE5BF581E75DCFF00E74137 /* HomeViewController.swift in Sources */,
 				4A91D3E71E7990AE00CF8C73 /* HomeTableViewCell.swift in Sources */,
+				4ACCF8441E80F4BF00B2523C /* CommentApi.swift in Sources */,
+				4ACCF8401E80EEB600B2523C /* UserApi.swift in Sources */,
+				4ACCF8461E80F7DA00B2523C /* Post_CommentApi.swift in Sources */,
 				4AE5BF5E1E75DD3A00E74137 /* ActivityViewController.swift in Sources */,
+				4ACCF83E1E80E90400B2523C /* PostApi.swift in Sources */,
 				4AE5BF5A1E75DD1B00E74137 /* DiscoverViewController.swift in Sources */,
 				4A91D3EA1E79ABAD00CF8C73 /* User.swift in Sources */,
 				4AA33C051E8022FA0048DD6B /* Comment.swift in Sources */,

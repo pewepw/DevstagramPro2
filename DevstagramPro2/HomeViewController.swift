@@ -31,38 +31,56 @@ class HomeViewController: UIViewController {
      
     }
     
-    // after fetch user to array completed, append posts to posts array
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict)
-                self.users.append(user)
-                completed()
-            }
-            
-        })
-        
+        Api.User.observeUser(withId: uid) { (user) in
+            self.users.append(user)
+            completed()
+        }
     }
+    
+//    // after fetch user to array completed, append posts to posts array
+//    func fetchUser(uid: String, completed: @escaping () -> Void) {
+//        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let dict = snapshot.value as? [String: Any] {
+//                let user = User.transformUser(dict: dict)
+//                self.users.append(user)
+//                completed()
+//            }
+//            
+//        })
+//        
+//    }
     
     func loadPosts() {
         
         activityIndicatorView.startAnimating()
         
-        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+        Api.Post.observePosts { (post) in
+            self.fetchUser(uid: post.uid!, completed: {
+                self.posts.append(post)
                 
-                self.fetchUser(uid: newPost.uid!, completed: {
-                    self.posts.append(newPost)
-                    
-                    self.activityIndicatorView.stopAnimating()
-                    self.activityIndicatorView.isHidden = true
-                    
-                    self.tableView.reloadData()
-                })
+                self.activityIndicatorView.stopAnimating()
+                self.activityIndicatorView.isHidden = true
                 
-            }
-        })
+                self.tableView.reloadData()
+            })
+        }
+        
+//        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
+//            if let dict = snapshot.value as? [String: Any] {
+//                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+//                
+//                self.fetchUser(uid: newPost.uid!, completed: {
+//                    self.posts.append(newPost)
+//                    
+//                    self.activityIndicatorView.stopAnimating()
+//                    self.activityIndicatorView.isHidden = true
+//                    
+//                    self.tableView.reloadData()
+//                })
+//                
+//            }
+//        })
         
     }
     

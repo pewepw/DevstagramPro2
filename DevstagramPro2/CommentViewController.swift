@@ -65,36 +65,51 @@ class CommentViewController: UIViewController {
     }
     
     func loadComments() {
-        let postCommentRef = FIRDatabase.database().reference().child("post-comments").child(self.postId)
-        postCommentRef.observe(.childAdded, with: { (snapshot) in
+        
+        Api.Post_Comment.REF_POST_COMMENTS.child(self.postId).observe(.childAdded, with: { (snapshot) in
             //print("**********")
             //print(snapshot.key)
-            FIRDatabase.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment) in
-                if let dict = snapshotComment.value as? [String: Any] {
-                    let newComment = Comment.transformComment(dict: dict)
-                    
-                    self.fetchUser(uid: newComment.uid!, completed: {
-                        self.comments.append(newComment)
-                        self.tableView.reloadData()
-                    })
-                    
-                }
-                
+            
+            Api.Comment.observeComment(withPostId: snapshot.key, completion: { (comment) in
+                self.fetchUser(uid: comment.uid!, completed: {
+                    self.comments.append(comment)
+                    self.tableView.reloadData()
+                })
             })
+            
         })
     }
     
+    //            FIRDatabase.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment) in
+    //                if let dict = snapshotComment.value as? [String: Any] {
+    //                    let newComment = Comment.transformComment(dict: dict)
+    //
+    //                    self.fetchUser(uid: newComment.uid!, completed: {
+    //                        self.comments.append(newComment)
+    //                        self.tableView.reloadData()
+    //                    })
+    //
+    //                }
+    //
+    //            })
+    
+    
     func fetchUser(uid: String, completed: @escaping () -> Void) {
-        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let user = User.transformUser(dict: dict)
-                self.users.append(user)
-                completed()
-            }
-            
-        })
-        
+        Api.User.observeUser(withId: uid) { (user) in
+            self.users.append(user)
+            completed()
+        }
     }
+    //        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+    //            if let dict = snapshot.value as? [String: Any] {
+    //                let user = User.transformUser(dict: dict)
+    //                self.users.append(user)
+    //                completed()
+    //            }
+    //
+    //        })
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +144,8 @@ class CommentViewController: UIViewController {
                 
             }
             
-            let postCommentRef = FIRDatabase.database().reference().child("post-comments").child(self.postId).child(newCommentId)
+//            let postCommentRef = FIRDatabase.database().reference().child("post-comments").child(self.postId).child(newCommentId)
+            let postCommentRef = Api.Post_Comment.REF_POST_COMMENTS.child(self.postId).child(newCommentId)
             postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {
                     SVProgressHUD.showError(withStatus: error!.localizedDescription)
