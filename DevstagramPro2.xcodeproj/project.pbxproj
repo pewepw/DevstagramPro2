@@ -14,6 +14,7 @@
 		4A45BDD21E76C2640095F1BB /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD11E76C2640095F1BB /* Camera.storyboard */; };
 		4A45BDD41E76C27F0095F1BB /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD31E76C27F0095F1BB /* Activity.storyboard */; };
 		4A45BDD61E76C2890095F1BB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD51E76C2890095F1BB /* Profile.storyboard */; };
+		4A67DDFF1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */; };
 		4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */; };
 		4A6F50651E75CA0500E4FC84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F50641E75CA0500E4FC84 /* Assets.xcassets */; };
 		4A6F50681E75CA0500E4FC84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F50661E75CA0500E4FC84 /* LaunchScreen.storyboard */; };
@@ -48,6 +49,7 @@
 		4A45BDD11E76C2640095F1BB /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		4A45BDD31E76C27F0095F1BB /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		4A45BDD51E76C2890095F1BB /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProfileCollectionReusableView.swift; sourceTree = "<group>"; };
 		4A6F505A1E75CA0500E4FC84 /* DevstagramPro2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevstagramPro2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A6F50641E75CA0500E4FC84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				4A91D3E61E7990AE00CF8C73 /* HomeTableViewCell.swift */,
 				4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */,
+				4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				4ACCF8421E80F25000B2523C /* Api.swift in Sources */,
 				4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */,
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,
+				4A67DDFF1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift in Sources */,
 				4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */,
 				4AE5BF541E75CC0000E74137 /* SignInViewController.swift in Sources */,
 				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
