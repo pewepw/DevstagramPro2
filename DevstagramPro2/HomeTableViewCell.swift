@@ -44,8 +44,14 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             postImageView.sd_setImage(with: photoUrl)
         }
-     
-        updateLike(post: post!)
+        
+        Api.Post.REF_POST.child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+                self.updateLike(post: post)
+            }
+        })
+        
         Api.Post.REF_POST.child(post!.id!).observe(.childChanged, with: { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.likeCountButton.setTitle("\(value) likes", for: .normal)
