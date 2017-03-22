@@ -22,6 +22,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var homeVC: HomeViewController?
+    var postRef: FIRDatabaseReference!
     
     var post: Post? {
         didSet {
@@ -43,17 +44,42 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             postImageView.sd_setImage(with: photoUrl)
         }
+     
+        updateLike(post: post!)
+        Api.Post.REF_POST.child(post!.id!).observe(.childChanged, with: { (snapshot) in
+            if let value = snapshot.value as? Int {
+                self.likeCountButton.setTitle("\(value) likes", for: .normal)
+            }
+        })
         
-        if let currentUser = FIRAuth.auth()?.currentUser {
-            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let _ = snapshot.value as? NSNull {
-                    self.likeImageView.image = UIImage(named: "like")
-                } else {
-                    self.likeImageView.image = UIImage(named: "likeSelected")
-                }
-            })
-        }
+//        if let currentUser = FIRAuth.auth()?.currentUser {
+//            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
+//                if let _ = snapshot.value as? NSNull {
+//                    self.likeImageView.image = UIImage(named: "like")
+//                } else {
+//                    self.likeImageView.image = UIImage(named: "likeSelected")
+//                }
+//            })
+//        }
 
+    }
+    
+    func updateLike(post: Post) {
+        let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
+        likeImageView.image = UIImage(named: imageName)
+//        if post.isLiked == false {
+//            likeImageView.image = UIImage(named: "like")
+//        } else {
+//            likeImageView.image = UIImage(named: "likeSelected")
+//        }
+        guard let count = post.likeCount else {
+            return
+        }
+        if count != 0 {
+            likeCountButton.setTitle("\(count) likes", for: .normal)
+        } else {
+            likeCountButton.setTitle("Be the first to like this", for: .normal)
+        }
     }
     
     func setupUserInfo() {
@@ -93,23 +119,58 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func likeImageView_TouchUpInside() {
+        postRef = Api.Post.REF_POST.child(post!.id!)
+        incrementLike(forRef: postRef)
+
+        
 //        if let currentUser = FIRAuth.auth()?.currentUser {
-//            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).setValue(true)
+//            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
+//                if let _ = snapshot.value as? NSNull { //never like before then
+//                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).setValue(true) //should set value to true
+//                    self.likeImageView.image = UIImage(named: "likeSelected") //should set view should be "likeSelected"
+//                } else {
+//                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).removeValue()
+//                    self.likeImageView.image = UIImage(named: "like")
+//                }
+//            })
 //        }
         
-        if let currentUser = FIRAuth.auth()?.currentUser {
-            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let _ = snapshot.value as? NSNull { //never like before then
-                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).setValue(true) //should set value to true
-                    self.likeImageView.image = UIImage(named: "likeSelected") //should set view should be "likeSelected"
+        
+    }
+    
+    func incrementLike(forRef ref:FIRDatabaseReference) {
+        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
+                var likes: Dictionary<String, Bool>
+                likes = post["likes"] as? [String : Bool] ?? [:]
+                var likeCount = post["likeCount"] as? Int ?? 0
+                if let _ = likes[uid] {
+                    // Unstar the post and remove self from stars
+                    likeCount -= 1
+                    likes.removeValue(forKey: uid)
                 } else {
-                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).removeValue()
-                    self.likeImageView.image = UIImage(named: "like")
+                    // Star the post and add self to stars
+                    likeCount += 1
+                    likes[uid] = true
                 }
-            })
+                post["likeCount"] = likeCount as AnyObject?
+                post["likes"] = likes as AnyObject?
+                
+                // Set value and report transaction success
+                currentData.value = post
+                
+                return FIRTransactionResult.success(withValue: currentData)
+            }
+            return FIRTransactionResult.success(withValue: currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let dict = snapshot?.value as? [String: Any] {
+                let post = Post.transformPostPhoto(dict: dict, key: snapshot!.key)
+                self.updateLike(post: post)
+            }
         }
-        
-        
     }
     
     override func prepareForReuse() {
