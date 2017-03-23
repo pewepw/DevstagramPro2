@@ -19,6 +19,10 @@ class HomeViewController: UIViewController {
     var posts = [Post]()
     var users = [User]()
     
+    
+    let batmanImage = UIImageView()
+    let subview = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +32,49 @@ class HomeViewController: UIViewController {
         
         loadPosts()
         
-     
+        
+        
+        subview.backgroundColor = UIColor.black
+        subview.frame.size.width = UIScreen.main.bounds.width
+        subview.frame.size.height = UIScreen.main.bounds.height
+        view.addSubview(subview)
+        
+        batmanImage.frame = CGRect(x: (view.bounds.size.width / 2) - 75 , y: (view.bounds.size.height / 2) - 50, width: 150, height: 100)
+        batmanImage.image = UIImage(named: "batman")
+        view.addSubview(batmanImage)
+        
+        animatingLogo()
+        
+        
+        
     }
+    
+    func animatingLogo() {
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
+            self.batmanImage.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        }) { (finished: Bool) in
+            if finished {
+                
+                UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: {
+                    self.batmanImage.transform = CGAffineTransform(scaleX: 20, y: 20)
+                }, completion: { (finished) in
+                    if finished {
+                        
+                        UIView.animate(withDuration: 0.1, animations: {
+                            self.batmanImage.alpha = 0
+                            self.subview.alpha = 0
+                            self.tabBarController?.tabBar.isHidden = false
+                            self.navigationController?.navigationBar.isHidden = false
+                        })
+                    }
+                })
+                
+            }
+        }
+    }
+    
     
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Api.User.observeUser(withId: uid) { (user) in
@@ -38,18 +83,18 @@ class HomeViewController: UIViewController {
         }
     }
     
-//    // after fetch user to array completed, append posts to posts array
-//    func fetchUser(uid: String, completed: @escaping () -> Void) {
-//        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let dict = snapshot.value as? [String: Any] {
-//                let user = User.transformUser(dict: dict)
-//                self.users.append(user)
-//                completed()
-//            }
-//            
-//        })
-//        
-//    }
+    //    // after fetch user to array completed, append posts to posts array
+    //    func fetchUser(uid: String, completed: @escaping () -> Void) {
+    //        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+    //            if let dict = snapshot.value as? [String: Any] {
+    //                let user = User.transformUser(dict: dict)
+    //                self.users.append(user)
+    //                completed()
+    //            }
+    //
+    //        })
+    //
+    //    }
     
     func loadPosts() {
         
@@ -66,31 +111,31 @@ class HomeViewController: UIViewController {
             })
         }
         
-//        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
-//            if let dict = snapshot.value as? [String: Any] {
-//                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
-//                
-//                self.fetchUser(uid: newPost.uid!, completed: {
-//                    self.posts.append(newPost)
-//                    
-//                    self.activityIndicatorView.stopAnimating()
-//                    self.activityIndicatorView.isHidden = true
-//                    
-//                    self.tableView.reloadData()
-//                })
-//                
-//            }
-//        })
+        //        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
+        //            if let dict = snapshot.value as? [String: Any] {
+        //                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+        //
+        //                self.fetchUser(uid: newPost.uid!, completed: {
+        //                    self.posts.append(newPost)
+        //
+        //                    self.activityIndicatorView.stopAnimating()
+        //                    self.activityIndicatorView.isHidden = true
+        //
+        //                    self.tableView.reloadData()
+        //                })
+        //
+        //            }
+        //        })
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        self.tabBarController?.tabBar.isHidden = false
-//        
-//    }
-
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //
+    //        self.tabBarController?.tabBar.isHidden = false
+    //
+    //    }
+    
     
     
     @IBAction func logout_TouchUpInside(_ sender: Any) {

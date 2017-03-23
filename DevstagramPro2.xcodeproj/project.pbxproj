@@ -14,6 +14,8 @@
 		4A45BDD21E76C2640095F1BB /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD11E76C2640095F1BB /* Camera.storyboard */; };
 		4A45BDD41E76C27F0095F1BB /* Activity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD31E76C27F0095F1BB /* Activity.storyboard */; };
 		4A45BDD61E76C2890095F1BB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDD51E76C2890095F1BB /* Profile.storyboard */; };
+		4A5264E41E83CBB9009ACFE8 /* MyPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5264E31E83CBB9009ACFE8 /* MyPostsApi.swift */; };
+		4A5264E61E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5264E51E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift */; };
 		4A67DDFF1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */; };
 		4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */; };
 		4A6F50651E75CA0500E4FC84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F50641E75CA0500E4FC84 /* Assets.xcassets */; };
@@ -49,6 +51,8 @@
 		4A45BDD11E76C2640095F1BB /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		4A45BDD31E76C27F0095F1BB /* Activity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Activity.storyboard; sourceTree = "<group>"; };
 		4A45BDD51E76C2890095F1BB /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		4A5264E31E83CBB9009ACFE8 /* MyPostsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsApi.swift; sourceTree = "<group>"; };
+		4A5264E51E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProfileCollectionReusableView.swift; sourceTree = "<group>"; };
 		4A6F505A1E75CA0500E4FC84 /* DevstagramPro2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevstagramPro2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6F505D1E75CA0500E4FC84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 				4ACCF83D1E80E90400B2523C /* PostApi.swift */,
 				4ACCF8431E80F4BF00B2523C /* CommentApi.swift */,
 				4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */,
+				4A5264E31E83CBB9009ACFE8 /* MyPostsApi.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				4A91D3E61E7990AE00CF8C73 /* HomeTableViewCell.swift */,
 				4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */,
 				4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */,
+				4A5264E51E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
 				4AE5BF581E75DCFF00E74137 /* HomeViewController.swift in Sources */,
 				4A91D3E71E7990AE00CF8C73 /* HomeTableViewCell.swift in Sources */,
+				4A5264E61E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift in Sources */,
 				4ACCF8441E80F4BF00B2523C /* CommentApi.swift in Sources */,
 				4ACCF8401E80EEB600B2523C /* UserApi.swift in Sources */,
 				4ACCF8461E80F7DA00B2523C /* Post_CommentApi.swift in Sources */,
@@ -349,6 +356,7 @@
 				4AE5BF601E75DD5000E74137 /* ProfileViewController.swift in Sources */,
 				4AB37CB71E7E699C00552C38 /* CommentTableViewCell.swift in Sources */,
 				4AE5BF5C1E75DD2800E74137 /* CameraViewController.swift in Sources */,
+				4A5264E41E83CBB9009ACFE8 /* MyPostsApi.swift in Sources */,
 				4A91D3E51E7967A700CF8C73 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
