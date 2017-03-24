@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
+import SVProgressHUD
+//import FirebaseDatabase
+//import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -22,7 +23,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     
     var homeVC: HomeViewController?
-    var postRef: FIRDatabaseReference!
     
     var post: Post? {
         didSet {
@@ -45,18 +45,11 @@ class HomeTableViewCell: UITableViewCell {
             postImageView.sd_setImage(with: photoUrl)
         }
         
-        Api.Post.REF_POST.child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dict = snapshot.value as? [String: Any] {
-                let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
-                self.updateLike(post: post)
-            }
-        })
-        
-        Api.Post.REF_POST.child(post!.id!).observe(.childChanged, with: { (snapshot) in
-            if let value = snapshot.value as? Int {
-                self.likeCountButton.setTitle("\(value) likes", for: .normal)
-            }
-        })
+        Api.Post.observePost(withId: post!.id!) { (post) in
+            self.updateLike(post: post)
+        }
+                
+
         
 //        if let currentUser = FIRAuth.auth()?.currentUser {
 //            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -67,7 +60,10 @@ class HomeTableViewCell: UITableViewCell {
 //                }
 //            })
 //        }
-
+        Api.Post.observeLikeCount(withPostId: post!.id!) { (value) in
+            self.likeCountButton.setTitle("\(value) likes", for: .normal)
+        }
+        
     }
     
     func updateLike(post: Post) {
@@ -125,8 +121,11 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     func likeImageView_TouchUpInside() {
-        postRef = Api.Post.REF_POST.child(post!.id!)
-        incrementLike(forRef: postRef)
+        Api.Post.incrementLikes(postId: post!.id!, onSuccess: { (post) in
+            self.updateLike(post: post)
+        }) { (errorMessage) in
+            SVProgressHUD.showError(withStatus: errorMessage)
+        }
 
         
 //        if let currentUser = FIRAuth.auth()?.currentUser {
@@ -144,40 +143,6 @@ class HomeTableViewCell: UITableViewCell {
         
     }
     
-    func incrementLike(forRef ref:FIRDatabaseReference) {
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
-            if var post = currentData.value as? [String : AnyObject], let uid = FIRAuth.auth()?.currentUser?.uid {
-                var likes: Dictionary<String, Bool>
-                likes = post["likes"] as? [String : Bool] ?? [:]
-                var likeCount = post["likeCount"] as? Int ?? 0
-                if let _ = likes[uid] {
-                    // Unstar the post and remove self from stars
-                    likeCount -= 1
-                    likes.removeValue(forKey: uid)
-                } else {
-                    // Star the post and add self to stars
-                    likeCount += 1
-                    likes[uid] = true
-                }
-                post["likeCount"] = likeCount as AnyObject?
-                post["likes"] = likes as AnyObject?
-                
-                // Set value and report transaction success
-                currentData.value = post
-                
-                return FIRTransactionResult.success(withValue: currentData)
-            }
-            return FIRTransactionResult.success(withValue: currentData)
-        }) { (error, committed, snapshot) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let dict = snapshot?.value as? [String: Any] {
-                let post = Post.transformPostPhoto(dict: dict, key: snapshot!.key)
-                self.updateLike(post: post)
-            }
-        }
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+//import FirebaseAuth
+//import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
 
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
     }
     
     func fetchMyPosts() {
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
+        guard let currentUser = Api.User.CURRENT_USER else {
             return
         }
         Api.MyPosts.REF_MYPOSTS.child(currentUser.uid).observe(.childAdded) { (snapshot) in

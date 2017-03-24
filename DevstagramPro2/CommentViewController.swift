@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
+//import FirebaseDatabase
+//import FirebaseAuth
 import SVProgressHUD
 
 class CommentViewController: UIViewController {
@@ -126,12 +126,13 @@ class CommentViewController: UIViewController {
     
     @IBAction func sendButton(_ sender: Any) {
         
-        let ref = FIRDatabase.database().reference()
-        let commentsReference = ref.child("comments")
+//        let ref = FIRDatabase.database().reference()
+//        let commentsReference = ref.child("comments")
+        let commentsReference = Api.Comment.REF_COMMENTS
         let newCommentId = commentsReference.childByAutoId().key
         let newCommentsReference = commentsReference.child(newCommentId)
         
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
+        guard let currentUser = Api.User.CURRENT_USER else {
             return
         }
         

@@ -8,8 +8,8 @@
 
 import UIKit
 import SVProgressHUD
-import FirebaseStorage
-import FirebaseDatabase
+//import FirebaseStorage
+//import FirebaseDatabase
 import FirebaseAuth
 
 class CameraViewController: UIViewController {
@@ -67,20 +67,9 @@ class CameraViewController: UIViewController {
         SVProgressHUD.show()
         
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
-            let photoIdString = NSUUID().uuidString
-            let storageRef = FIRStorage.storage().reference().child("posts").child(photoIdString)
-            
-            storageRef.put(imageData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    
-                    SVProgressHUD.showError(withStatus: error!.localizedDescription)
-
-                    return
-                }
-                
-                let photoUrl = metadata?.downloadURL()?.absoluteString
-                self.sendDataToDatabase(photoUrl: photoUrl!)
-                
+            HelperService.uploadDataToServer(data: imageData, caption: captionTextView.text!, onSucess: {
+                self.clean()
+                self.tabBarController?.selectedIndex = 0
             })
         } else {
             
@@ -97,37 +86,37 @@ class CameraViewController: UIViewController {
     }
     
     func sendDataToDatabase(photoUrl: String) {
-        let ref = FIRDatabase.database().reference()
-        let postsReference = ref.child("posts")
-        let newPostId = postsReference.childByAutoId().key
-        let newPostsReference = postsReference.child(newPostId)
-        
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
-            return
-        }
-        
-        let currentUserId = currentUser.uid
-        newPostsReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": captionTextView.text!]) { (error, ref) in
-            if error != nil {
-                
-                SVProgressHUD.showError(withStatus: error!.localizedDescription)
-                return
-                
-            }
-            
-            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
-            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
-                if error != nil {
-                    SVProgressHUD.showError(withStatus: error!.localizedDescription)
-                    return
-                }
-            })
-
-            
-            SVProgressHUD.showSuccess(withStatus: "Success")
-            self.clean()
-            self.tabBarController?.selectedIndex = 0
-        }
+        //        let ref = FIRDatabase.database().reference()
+        //        let postsReference = ref.child("posts")
+        //        let newPostId = postsReference.childByAutoId().key
+        //        let newPostsReference = postsReference.child(newPostId)
+        //
+        //        guard let currentUser = FIRAuth.auth()?.currentUser else {
+        //            return
+        //        }
+        //
+        //        let currentUserId = currentUser.uid
+        //        newPostsReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": captionTextView.text!]) { (error, ref) in
+        //           if error != nil {
+        //
+        //                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+        //                return
+        //
+        //            }
+        //
+        //            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
+        //            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
+        //                if error != nil {
+        //                    SVProgressHUD.showError(withStatus: error!.localizedDescription)
+        //                    return
+        //                }
+        //            })
+        //
+        //
+        //            SVProgressHUD.showSuccess(withStatus: "Success")
+        //            self.clean()
+        //           self.tabBarController?.selectedIndex = 0
+        //        }
         
     }
     
@@ -135,23 +124,23 @@ class CameraViewController: UIViewController {
         self.captionTextView.text = ""
         self.photo.image = UIImage(named: "Placeholder-image")
         self.selectedImage = nil
-
+        
     }
     
 }
 
-    extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-            
-            if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-                photo.image = image
-                selectedImage = image
-            }
-            
-            dismiss(animated: true, completion: nil)
-            
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            photo.image = image
+            selectedImage = image
         }
         
-
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
 }
