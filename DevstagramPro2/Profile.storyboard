@@ -191,7 +191,13 @@
                             <constraint firstAttribute="trailing" secondItem="dPV-hX-xk0" secondAttribute="trailing" id="yKY-Id-2ED"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="caM-BR-BKK"/>
+                    <navigationItem key="navigationItem" id="caM-BR-BKK">
+                        <barButtonItem key="leftBarButtonItem" image="discover" id="lQA-A6-WAk">
+                            <connections>
+                                <segue destination="8tX-tv-bTB" kind="show" id="gjs-VH-c2H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="dPV-hX-xk0" id="pbu-5W-JhE"/>
                     </connections>
@@ -199,6 +205,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKk-qN-RTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3413.5999999999999" y="1881.4092953523241"/>
+        </scene>
+        <!--People View Controller-->
+        <scene sceneID="jJD-7D-HpK">
+            <objects>
+                <viewController id="8tX-tv-bTB" customClass="PeopleViewController" customModule="DevstagramPro2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bT1-mU-mug"/>
+                        <viewControllerLayoutGuide type="bottom" id="86M-Yx-zJi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UvZ-ZG-IkW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bBN-MI-jIh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeopleTableViewCell" rowHeight="81" id="AXI-Ub-mOm" customClass="PeopleTableViewCell" customModule="DevstagramPro2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AXI-Ub-mOm" id="mIb-Wx-RpS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IYu-43-zng">
+                                                    <rect key="frame" x="15" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="l1u-Pa-dir"/>
+                                                        <constraint firstAttribute="height" constant="60" id="lzV-o7-Kyx"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="30"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bym-5U-Aba">
+                                                    <rect key="frame" x="90" y="31.5" width="38.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8R-iL-Bgd">
+                                                    <rect key="frame" x="260" y="25.5" width="100" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="RHH-f1-FCe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <state key="normal" title="Follow"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bym-5U-Aba" firstAttribute="leading" secondItem="IYu-43-zng" secondAttribute="trailing" constant="15" id="DzL-Nl-5e0"/>
+                                                <constraint firstAttribute="trailing" secondItem="B8R-iL-Bgd" secondAttribute="trailing" constant="15" id="MjK-tJ-Mjh"/>
+                                                <constraint firstItem="IYu-43-zng" firstAttribute="leading" secondItem="mIb-Wx-RpS" secondAttribute="leading" constant="15" id="WgY-k0-KMp"/>
+                                                <constraint firstItem="B8R-iL-Bgd" firstAttribute="centerY" secondItem="IYu-43-zng" secondAttribute="centerY" id="hwS-an-1H5"/>
+                                                <constraint firstItem="bym-5U-Aba" firstAttribute="centerY" secondItem="IYu-43-zng" secondAttribute="centerY" id="mxm-s9-8lG"/>
+                                                <constraint firstItem="IYu-43-zng" firstAttribute="top" secondItem="mIb-Wx-RpS" secondAttribute="top" constant="10" id="vG6-qM-3pD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followButton" destination="B8R-iL-Bgd" id="VX0-al-EvE"/>
+                                            <outlet property="nameLabel" destination="bym-5U-Aba" id="eWv-qF-8Rd"/>
+                                            <outlet property="profileImage" destination="IYu-43-zng" id="t1r-4r-79k"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bBN-MI-jIh" firstAttribute="top" secondItem="UvZ-ZG-IkW" secondAttribute="top" id="5ga-yx-f8B"/>
+                            <constraint firstAttribute="bottom" secondItem="bBN-MI-jIh" secondAttribute="bottom" id="VSp-ST-Ove"/>
+                            <constraint firstAttribute="trailing" secondItem="bBN-MI-jIh" secondAttribute="trailing" id="WUj-Vb-B5W"/>
+                            <constraint firstItem="bBN-MI-jIh" firstAttribute="leading" secondItem="UvZ-ZG-IkW" secondAttribute="leading" id="mWP-GZ-RO8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="bBN-MI-jIh" id="MNW-FU-Cwq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5C-H0-Q6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4173.6000000000004" y="1880.5097451274364"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F0H-0X-8oE">
@@ -227,5 +317,6 @@
         <image name="Profile" width="20" height="21"/>
         <image name="Profile_Selected" width="20" height="21"/>
         <image name="ava" width="1290" height="1290"/>
+        <image name="discover" width="22" height="22"/>
     </resources>
 </document>

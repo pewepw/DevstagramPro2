@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A1A7D761E7809E400933915 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A7D751E7809E400933915 /* AuthService.swift */; };
+		4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E571E87A06D00F9680B /* PeopleViewController.swift */; };
+		4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */; };
+		4A325E5C1E87AC9500F9680B /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E5B1E87AC9500F9680B /* FollowApi.swift */; };
 		4A45BDCC1E76C1FF0095F1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */; };
 		4A45BDCE1E76C2400095F1BB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCD1E76C2400095F1BB /* Home.storyboard */; };
 		4A45BDD01E76C2550095F1BB /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCF1E76C2550095F1BB /* Discover.storyboard */; };
@@ -46,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		4A1A7D751E7809E400933915 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		4A325E571E87A06D00F9680B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		4A325E5B1E87AC9500F9680B /* FollowApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4A45BDCD1E76C2400095F1BB /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4A45BDCF1E76C2550095F1BB /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 				4AE5BF5D1E75DD3A00E74137 /* ActivityViewController.swift */,
 				4AE5BF5F1E75DD5000E74137 /* ProfileViewController.swift */,
 				4AB37CB41E7E697200552C38 /* CommentViewController.swift */,
+				4A325E571E87A06D00F9680B /* PeopleViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 				4ACCF8431E80F4BF00B2523C /* CommentApi.swift */,
 				4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */,
 				4A5264E31E83CBB9009ACFE8 /* MyPostsApi.swift */,
+				4A325E5B1E87AC9500F9680B /* FollowApi.swift */,
 				4A91D3E31E79679300CF8C73 /* Model */,
 				4A91D3E81E7990B800CF8C73 /* Views */,
 				4A45BDD81E76E0950095F1BB /* Controllers */,
@@ -186,6 +194,7 @@
 				4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */,
 				4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */,
 				4A5264E51E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift */,
+				4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */,
 				4ACCF8421E80F25000B2523C /* Api.swift in Sources */,
 				4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */,
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,
@@ -345,8 +355,10 @@
 				4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */,
 				4AE5BF541E75CC0000E74137 /* SignInViewController.swift in Sources */,
 				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
+				4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */,
 				4A8AA57E1E8584D100F39581 /* HelperService.swift in Sources */,
 				4AE5BF581E75DCFF00E74137 /* HomeViewController.swift in Sources */,
+				4A325E5C1E87AC9500F9680B /* FollowApi.swift in Sources */,
 				4A91D3E71E7990AE00CF8C73 /* HomeTableViewCell.swift in Sources */,
 				4A5264E61E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift in Sources */,
 				4ACCF8441E80F4BF00B2523C /* CommentApi.swift in Sources */,
