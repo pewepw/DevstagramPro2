@@ -21,20 +21,33 @@ class PeopleViewController: UIViewController {
         loadUsers()
     }
 
+//    func loadUsers() {
+//      Api.User.observeUsers { (user) in
+//        self.isFollowing(userId: user.id!, completed: { (value) in
+//            user.isFollowing = value
+//            self.users.append(user)
+//            self.tableView.reloadData()
+//       })
+//
+//        }
+//    }
+//
+//    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
+//        Api.Follow.isFollowing(userId: userId, completed: completed)
+//    }
+
     func loadUsers() {
-       Api.User.observeUsers { (user) in
-        self.isFollowing(userId: user.id!, completed: { (value) in
-            user.isFollowing = value
-            self.users.append(user)
-            self.tableView.reloadData()
-        })
-        
-        }
+        Api.User.observeUsers { (user) in
+            Api.Follow.isFollowing(userId: user.id!, completed: { (value) in
+                user.isFollowing = value
+                self.users.append(user)
+                self.tableView.reloadData()
+            })
+       }
+
     }
     
-    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
-        Api.Follow.isFollowing(userId: userId, completed: completed)
-    }
+
 
 }
 

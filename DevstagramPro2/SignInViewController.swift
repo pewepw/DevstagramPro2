@@ -82,7 +82,7 @@ class SignInViewController: UIViewController {
         SVProgressHUD.show()
         
         AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            SVProgressHUD.showSuccess(withStatus: "Success")
+            //SVProgressHUD.showSuccess(withStatus: "Success")
             self.performSegue(withIdentifier: "signInToTabbarVC", sender: nil)
         }, onError: { error in
             SVProgressHUD.showError(withStatus: error!)
