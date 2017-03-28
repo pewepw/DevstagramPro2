@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
         
         view.endEditing(true)
         
-        SVProgressHUD.show()
+        //SVProgressHUD.show()
         
         AuthService.signIn(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             //SVProgressHUD.showSuccess(withStatus: "Success")

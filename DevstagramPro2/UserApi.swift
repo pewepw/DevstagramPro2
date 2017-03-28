@@ -40,7 +40,11 @@ class UserApi {
         REF_USERS.observe(.childAdded, with: { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                completion(user)
+                //do not include current user in people view
+                if user.id! != Api.User.CURRENT_USER?.uid {
+                    completion(user)
+                }
+                
             }
         })
     }

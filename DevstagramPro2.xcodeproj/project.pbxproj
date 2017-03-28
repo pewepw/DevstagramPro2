@@ -31,6 +31,7 @@
 		4AA33C051E8022FA0048DD6B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA33C041E8022FA0048DD6B /* Comment.swift */; };
 		4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB37CB41E7E697200552C38 /* CommentViewController.swift */; };
 		4AB37CB71E7E699C00552C38 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */; };
+		4ABF64EB1E8ACC960000A8B5 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF64EA1E8ACC960000A8B5 /* FeedApi.swift */; };
 		4ACCF83E1E80E90400B2523C /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF83D1E80E90400B2523C /* PostApi.swift */; };
 		4ACCF8401E80EEB600B2523C /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF83F1E80EEB600B2523C /* UserApi.swift */; };
 		4ACCF8421E80F25000B2523C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCF8411E80F25000B2523C /* Api.swift */; };
@@ -74,6 +75,7 @@
 		4AA33C041E8022FA0048DD6B /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4AB37CB41E7E697200552C38 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		4AB37CB61E7E699C00552C38 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		4ABF64EA1E8ACC960000A8B5 /* FeedApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
 		4ACCF83D1E80E90400B2523C /* PostApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		4ACCF83F1E80EEB600B2523C /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		4ACCF8411E80F25000B2523C /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				4ACCF8451E80F7DA00B2523C /* Post_CommentApi.swift */,
 				4A5264E31E83CBB9009ACFE8 /* MyPostsApi.swift */,
 				4A325E5B1E87AC9500F9680B /* FollowApi.swift */,
+				4ABF64EA1E8ACC960000A8B5 /* FeedApi.swift */,
 				4A91D3E31E79679300CF8C73 /* Model */,
 				4A91D3E81E7990B800CF8C73 /* Views */,
 				4A45BDD81E76E0950095F1BB /* Controllers */,
@@ -373,6 +376,7 @@
 				4AB37CB71E7E699C00552C38 /* CommentTableViewCell.swift in Sources */,
 				4AE5BF5C1E75DD2800E74137 /* CameraViewController.swift in Sources */,
 				4A5264E41E83CBB9009ACFE8 /* MyPostsApi.swift in Sources */,
+				4ABF64EB1E8ACC960000A8B5 /* FeedApi.swift in Sources */,
 				4A91D3E51E7967A700CF8C73 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,12 +15,28 @@ class FollowApi {
     var REF_FOLLOWING = FIRDatabase.database().reference().child("following")
     
     func followAction(withUser id: String) {
+        Api.MyPosts.REF_MYPOSTS.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                for key in dict.keys {
+                    FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                }
+            }
+        })
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(true)
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(true)
 
     }
     
     func unFollowAction(withUser id: String) {
+        Api.MyPosts.REF_MYPOSTS.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String: Any] {
+                for key in dict.keys {
+                    FIRDatabase.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).removeValue()
+                }
+            }
+        })
+
+        
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(NSNull())
     }

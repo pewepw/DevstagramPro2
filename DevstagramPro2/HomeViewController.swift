@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         subview.frame.size.width = UIScreen.main.bounds.width
         subview.frame.size.height = UIScreen.main.bounds.height
         view.addSubview(subview)
-        
+
         batmanImage.frame = CGRect(x: (view.bounds.size.width / 2) - 75 , y: (view.bounds.size.height / 2) - 50, width: 150, height: 100)
         batmanImage.image = UIImage(named: "batman")
         view.addSubview(batmanImage)
@@ -51,8 +51,8 @@ class HomeViewController: UIViewController {
     }
     
     func animatingLogo() {
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.alpha = 0
+        navigationController?.navigationBar.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
             self.batmanImage.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }) { (finished: Bool) in
@@ -66,8 +66,8 @@ class HomeViewController: UIViewController {
                         UIView.animate(withDuration: 0.1, animations: {
                             self.batmanImage.alpha = 0
                             self.subview.alpha = 0
-                            self.tabBarController?.tabBar.isHidden = false
-                            self.navigationController?.navigationBar.isHidden = false
+                            self.tabBarController?.tabBar.alpha = 1
+                            self.navigationController?.navigationBar.alpha = 1
                         })
                     }
                 })
@@ -101,8 +101,11 @@ class HomeViewController: UIViewController {
         
         activityIndicatorView.startAnimating()
         
-        Api.Post.observePosts { (post) in
-            self.fetchUser(uid: post.uid!, completed: {
+        Api.Feed.observeFeed(withUserId: Api.User.CURRENT_USER!.uid) { (post) in
+            guard let postId = post.uid else {
+                return
+            }
+            self.fetchUser(uid: postId, completed: { 
                 self.posts.append(post)
                 
                 self.activityIndicatorView.stopAnimating()
@@ -111,6 +114,36 @@ class HomeViewController: UIViewController {
                 self.tableView.reloadData()
             })
         }
+        
+        Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
+//            for (index, post) in self.posts.enumerated() {
+//                if post.id == key {
+//                    self.posts.remove(at: index)
+//                }
+//            }
+            
+            self.posts = self.posts.filter { $0.id != post.id }
+            self.users = self.users.filter { $0.id != post.uid }
+            
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+//    func loadPosts() {
+//
+//        activityIndicatorView.startAnimating()
+//
+//        Api.Post.observePosts { (post) in
+//            self.fetchUser(uid: post.uid!, completed: {
+//                self.posts.append(post)
+//
+//                self.activityIndicatorView.stopAnimating()
+//                self.activityIndicatorView.isHidden = true
+//
+//                self.tableView.reloadData()
+//            })
+//        }
         
         //        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
         //            if let dict = snapshot.value as? [String: Any] {
@@ -127,8 +160,7 @@ class HomeViewController: UIViewController {
         //
         //            }
         //        })
-        
-    }
+        //  }
     
     //    override func viewWillAppear(_ animated: Bool) {
     //        super.viewWillAppear(animated)

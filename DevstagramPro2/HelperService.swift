@@ -50,6 +50,8 @@ class HelperService {
                 
             }
             
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
+            
             let myPostRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
             myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {
