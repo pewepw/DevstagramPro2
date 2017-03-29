@@ -43,6 +43,27 @@ class PostApi {
         })
     }
     
+    func observeTopPosts(completion: @escaping (Post) -> Void) {
+        REF_POST.queryOrdered(byChild: "likeCount").observeSingleEvent(of: .value, with: { (snapshot) in
+            let arraySnapshot = (snapshot.children.allObjects as! [FIRDataSnapshot]).reversed()
+            
+            //another way of for loop
+//            arraySnapshot.forEach({ (child) in
+//                if let dict = child.value as? [String: Any] {
+//                    let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+//                    completion(post)
+//                }
+//            })
+            for child in arraySnapshot {
+                if let dict = child.value as? [String: Any] {
+                    let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
+                    completion(post)
+                }
+
+            }
+        })
+    }
+    
     func incrementLikes(postId: String, onSuccess: @escaping (Post) -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
         let postRef = Api.Post.REF_POST.child(postId)
         postRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in

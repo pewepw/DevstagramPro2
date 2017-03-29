@@ -42,7 +42,7 @@ class HelperService {
             return
         }
         let currentUserId = currentUser.uid
-        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption]) { (error, ref) in
+        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likeCount": 0]) { (error, ref) in
             if error != nil {
                 
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)

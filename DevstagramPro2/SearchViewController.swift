@@ -56,9 +56,9 @@ extension SearchViewController: UISearchBarDelegate {
         doSearch()
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        doSearch()
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        doSearch()
+//    }
     
 }
 
