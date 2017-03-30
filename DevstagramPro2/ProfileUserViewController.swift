@@ -47,13 +47,13 @@ class ProfileUserViewController: UIViewController {
     }
     
     func fetchMyPosts() {
-        
-        Api.MyPosts.REF_MYPOSTS.child(userId).observe(.childAdded) { (snapshot) in
-            Api.Post.observePost(withId: snapshot.key, completion: { (post) in
+        Api.MyPosts.fetchMyPosts(userId: userId) { (key) in
+            Api.Post.observePost(withId: key, completion: { (post) in
                 self.posts.append(post)
                 self.collectionView.reloadData()
             })
         }
+        
         
     }
 
@@ -92,7 +92,7 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

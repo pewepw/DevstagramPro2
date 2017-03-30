@@ -46,6 +46,19 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             let photoUrl = URL(string: photoUrlString)
             self.profileImage.sd_setImage(with: photoUrl)
         }
+        
+        Api.MyPosts.fetchCountMyPosts(userId: user!.id!) { (count) in
+            self.myPostCountLabel.text = "\(count)"
+        }
+        
+        Api.Follow.fetchCountFollowing(userId: user!.id!) { (count) in
+            self.followingsCountLabel.text = "\(count)"
+        }
+        
+        Api.Follow.fetchCountFollowers(userId: user!.id!) { (count) in
+            self.followersCountLabel.text = "\(count)"
+        }
+        
         if user?.id == Api.User.CURRENT_USER?.uid {
             followButton.setTitle("Edit Profile", for: .normal)
         } else {

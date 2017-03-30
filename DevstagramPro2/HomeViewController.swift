@@ -99,7 +99,11 @@ class HomeViewController: UIViewController {
     
     func loadPosts() {
         
-        activityIndicatorView.startAnimating()
+        if posts.count >= 1 {
+            activityIndicatorView.startAnimating()
+        } else {
+            activityIndicatorView.isHidden = true
+        }
         
         Api.Feed.observeFeed(withUserId: Api.User.CURRENT_USER!.uid) { (post) in
             guard let postId = post.uid else {
