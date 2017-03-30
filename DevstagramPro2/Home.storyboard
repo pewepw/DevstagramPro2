@@ -158,6 +158,7 @@
                         <outlet property="activityIndicatorView" destination="Opq-aC-RwE" id="w0O-gH-Fov"/>
                         <outlet property="tableView" destination="ZbJ-BY-61A" id="Qnh-8W-udM"/>
                         <segue destination="4cq-5G-nc3" kind="show" identifier="CommentSegue" id="nb5-rr-wWe"/>
+                        <segue destination="4G8-U0-Y2Q" kind="show" identifier="Home_ProfileSegue" id="pCE-E3-5cR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sbf-b9-w1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -295,11 +296,20 @@
                         <outlet property="constraintToBottom" destination="H6S-f9-cxH" id="Mx1-Cy-54e"/>
                         <outlet property="sendButton" destination="YIg-Bj-EkW" id="fCv-94-zmT"/>
                         <outlet property="tableView" destination="JRk-WD-Viu" id="8s1-hs-5bw"/>
+                        <segue destination="4G8-U0-Y2Q" kind="show" identifier="Comment_ProfileSegue" id="EfM-mq-BHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXj-9S-zVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333.60000000000002" y="1627.7361319340332"/>
+            <point key="canvasLocation" x="274" y="1628"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="L3i-YP-MSa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="4G8-U0-Y2Q" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KkF-Cn-hMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="1477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y0r-Se-GNT">
@@ -332,4 +342,7 @@
         <image name="like" width="46" height="41"/>
         <image name="share" width="37" height="41"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EfM-mq-BHW"/>
+    </inferredMetricsTieBreakers>
 </document>

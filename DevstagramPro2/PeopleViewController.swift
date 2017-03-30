@@ -69,9 +69,16 @@ extension PeopleViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as! PeopleTableViewCell
         let user = users[indexPath.row]
         cell.user = user
-        cell.peopleVC = self
+        cell.delegate = self
+        //cell.peopleVC = self
         return cell
     }
     
+}
+
+extension PeopleViewController: PeopleTableViewCellDelegate {
+    func goToProfileUserVC(userId: String) {
+        performSegue(withIdentifier: "ProfileSegue", sender: userId)
+    }
 }
 

@@ -318,7 +318,7 @@
         <!--Profile User View Controller-->
         <scene sceneID="uNF-Hy-ffN">
             <objects>
-                <viewController id="u5o-qL-QMC" customClass="ProfileUserViewController" customModule="DevstagramPro2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileUserViewController" id="u5o-qL-QMC" customClass="ProfileUserViewController" customModule="DevstagramPro2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w57-UM-pZM"/>
                         <viewControllerLayoutGuide type="bottom" id="hWp-KF-io4"/>
@@ -408,7 +408,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="36" height="35"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lYv-lD-lwV">
-                                                                    <rect key="frame" x="5" y="0.0" width="27" height="18"/>
+                                                                    <rect key="frame" x="4.5" y="0.0" width="27" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -422,10 +422,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WG7-ZN-y9C">
-                                                            <rect key="frame" x="72" y="0.0" width="58" height="35"/>
+                                                            <rect key="frame" x="71.5" y="0.0" width="58" height="35"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UWF-2d-W65">
-                                                                    <rect key="frame" x="15" y="0.0" width="27" height="18"/>
+                                                                    <rect key="frame" x="15.5" y="0.0" width="27" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>

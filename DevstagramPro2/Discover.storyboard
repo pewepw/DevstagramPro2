@@ -80,6 +80,14 @@
             </objects>
             <point key="canvasLocation" x="495" y="2057"/>
         </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="Dd8-V8-eFb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="vgd-5C-ZE4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GkC-Bd-lm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1574" y="1662"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="uB4-NP-jqE">
             <objects>
@@ -163,6 +171,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="h9m-tD-8rC" id="XY8-Ye-u7d"/>
+                        <segue destination="vgd-5C-ZE4" kind="show" identifier="Search_ProfileSegue" id="dvC-5u-2mr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVC-Gg-ECx" userLabel="First Responder" sceneMemberID="firstResponder"/>
