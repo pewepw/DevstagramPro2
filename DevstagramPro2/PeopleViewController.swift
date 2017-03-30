@@ -38,7 +38,7 @@ class PeopleViewController: UIViewController {
 
     func loadUsers() {
         Api.User.observeUsers { (user) in
-            Api.Follow.isFollowing(userId: user.id!, completed: { (value) in
+            self.isFollowing(userId: user.id!, completed: { (value) in
                 user.isFollowing = value
                 self.users.append(user)
                 self.tableView.reloadData()
@@ -47,11 +47,16 @@ class PeopleViewController: UIViewController {
 
     }
     
+    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
+        Api.Follow.isFollowing(userId: userId, completed: completed)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ProfileSegue" {
             let profileVC = segue.destination as! ProfileUserViewController
             let userId = sender as! String
             profileVC.userId = userId
+            profileVC.delegate = self
         }
     }
     
@@ -82,3 +87,13 @@ extension PeopleViewController: PeopleTableViewCellDelegate {
     }
 }
 
+extension PeopleViewController: HeaderProfileCollectionReusableViewDelegate {
+    func updateFollowButton(forUser user: User) {
+        for u in self.users {
+            if u.id == user.id {
+                u.isFollowing = user.isFollowing
+                self.tableView.reloadData()
+            }
+        }
+    }
+}

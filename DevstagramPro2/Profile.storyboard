@@ -174,6 +174,7 @@
                                         <constraint firstItem="LKI-mx-Ykg" firstAttribute="top" secondItem="s7N-DD-t3v" secondAttribute="top" constant="15" id="j0u-am-NAu"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="followButton" destination="RCs-UI-LwX" id="kTG-xb-xfu"/>
                                         <outlet property="followersCountLabel" destination="B85-qf-IVc" id="3BL-JI-IP8"/>
                                         <outlet property="followingsCountLabel" destination="5YD-ut-J99" id="xZi-5g-DE9"/>
                                         <outlet property="myPostCountLabel" destination="fkU-tr-CFJ" id="vV9-N5-6vl"/>
@@ -386,13 +387,14 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnx-fU-tVL">
                                             <rect key="frame" x="130" y="15" width="230" height="100"/>
                                             <subviews>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-bO-G9N">
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-bO-G9N">
                                                     <rect key="frame" x="0.0" y="55" width="230" height="30"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="j0z-ky-VCR"/>
                                                     </constraints>
-                                                    <state key="normal" title="Edit Profile">
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <state key="normal" title="Loading...">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -480,6 +482,7 @@
                                         <constraint firstItem="EKm-XI-LrP" firstAttribute="leading" secondItem="JEG-yk-JCy" secondAttribute="leading" id="x9g-z4-qxM"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="followButton" destination="ms4-bO-G9N" id="pAq-Hu-Ua7"/>
                                         <outlet property="followersCountLabel" destination="UWF-2d-W65" id="hms-93-Cdh"/>
                                         <outlet property="followingsCountLabel" destination="stq-iU-W4h" id="Xsv-z6-8sY"/>
                                         <outlet property="myPostCountLabel" destination="lYv-lD-lwV" id="vjX-B3-ErB"/>
