@@ -21,8 +21,24 @@ class HomeViewController: UIViewController {
     var users = [User]()
     
     
-    let batmanImage = UIImageView()
+    let logoImage = UIImageView()
     let subview = UIView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        subview.backgroundColor = UIColor.black
+        subview.frame.size.width = UIScreen.main.bounds.width
+        subview.frame.size.height = UIScreen.main.bounds.height
+        view.addSubview(subview)
+        
+        logoImage.frame = CGRect(x: (view.bounds.size.width / 2) - 90 , y: (view.bounds.size.height / 2) - 90, width: 180, height: 180)
+        logoImage.image = UIImage(named: "D")
+        view.addSubview(logoImage)
+        
+        animatingLogo()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,40 +50,26 @@ class HomeViewController: UIViewController {
         loadPosts()
         
         
-        
-        subview.backgroundColor = UIColor.black
-        subview.frame.size.width = UIScreen.main.bounds.width
-        subview.frame.size.height = UIScreen.main.bounds.height
-        view.addSubview(subview)
-
-        batmanImage.frame = CGRect(x: (view.bounds.size.width / 2) - 75 , y: (view.bounds.size.height / 2) - 50, width: 150, height: 100)
-        batmanImage.image = UIImage(named: "batman")
-        view.addSubview(batmanImage)
-        
-        animatingLogo()
-        
-        
-        
     }
     
     func animatingLogo() {
-        tabBarController?.tabBar.alpha = 0
-        navigationController?.navigationBar.alpha = 0
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
-            self.batmanImage.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+            self.logoImage.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }) { (finished: Bool) in
             if finished {
                 
                 UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseOut, animations: {
-                    self.batmanImage.transform = CGAffineTransform(scaleX: 20, y: 20)
+                    self.logoImage.transform = CGAffineTransform(scaleX: 20, y: 20)
                 }, completion: { (finished) in
                     if finished {
                         
                         UIView.animate(withDuration: 0.1, animations: {
-                            self.batmanImage.alpha = 0
+                            self.logoImage.alpha = 0
                             self.subview.alpha = 0
-                            self.tabBarController?.tabBar.alpha = 1
-                            self.navigationController?.navigationBar.alpha = 1
+                            self.tabBarController?.tabBar.isHidden = false
+                            self.navigationController?.navigationBar.isHidden = false
                         })
                     }
                 })
