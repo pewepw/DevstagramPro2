@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A0109241E8C2A760058FD2A /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */; };
+		4A1045401E90AD4800D04FED /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */; };
 		4A1A7D761E7809E400933915 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A7D751E7809E400933915 /* AuthService.swift */; };
 		4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E571E87A06D00F9680B /* PeopleViewController.swift */; };
 		4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
+		4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		4A1A7D751E7809E400933915 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		4A325E571E87A06D00F9680B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				4A325E571E87A06D00F9680B /* PeopleViewController.swift */,
 				4AE117601E8BC3C800DAA8A2 /* SearchViewController.swift */,
 				4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */,
+				4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */,
+				4A1045401E90AD4800D04FED /* SettingTableViewController.swift in Sources */,
 				4ACCF8421E80F25000B2523C /* Api.swift in Sources */,
 				4AB37CB51E7E697200552C38 /* CommentViewController.swift in Sources */,
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,

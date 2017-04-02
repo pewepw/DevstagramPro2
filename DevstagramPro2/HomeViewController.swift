@@ -23,9 +23,16 @@ class HomeViewController: UIViewController {
     
     let logoImage = UIImageView()
     let subview = UIView()
+
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 510
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+
         
         subview.backgroundColor = UIColor.black
         subview.frame.size.width = UIScreen.main.bounds.width
@@ -38,23 +45,14 @@ class HomeViewController: UIViewController {
         
         animatingLogo()
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 510
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
         loadPosts()
         
         
     }
     
     func animatingLogo() {
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.alpha = 0
+        navigationController?.navigationBar.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
             self.logoImage.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         }) { (finished: Bool) in
@@ -65,12 +63,13 @@ class HomeViewController: UIViewController {
                 }, completion: { (finished) in
                     if finished {
                         
-                        UIView.animate(withDuration: 0.1, animations: {
+                        
+                        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
                             self.logoImage.alpha = 0
                             self.subview.alpha = 0
-                            self.tabBarController?.tabBar.isHidden = false
-                            self.navigationController?.navigationBar.isHidden = false
-                        })
+                            self.tabBarController?.tabBar.alpha = 1
+                            self.navigationController?.navigationBar.alpha = 1
+                        }, completion: nil)
                     }
                 })
                 
