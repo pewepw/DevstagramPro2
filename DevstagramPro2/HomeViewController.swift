@@ -176,21 +176,6 @@ class HomeViewController: UIViewController {
     
     
     
-    @IBAction func logout_TouchUpInside(_ sender: Any) {
-        
-     
-        
-        AuthService.logout(onSuccess: { 
-            let storyboard = UIStoryboard(name: "Start", bundle: nil)
-            let SignInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
-            self.present(SignInVC, animated: true, completion: nil)
-            
-        }) { (errorMessage) in
-            SVProgressHUD.showError(withStatus: errorMessage)
-        }
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentSegue" {
             let commentVC = segue.destination as! CommentViewController
