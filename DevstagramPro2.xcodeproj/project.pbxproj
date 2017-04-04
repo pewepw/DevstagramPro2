@@ -10,6 +10,7 @@
 		4A0109241E8C2A760058FD2A /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */; };
 		4A1045401E90AD4800D04FED /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */; };
 		4A1A7D761E7809E400933915 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1A7D751E7809E400933915 /* AuthService.swift */; };
+		4A313E961E93E9D1000657AE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A313E951E93E9D1000657AE /* DetailViewController.swift */; };
 		4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E571E87A06D00F9680B /* PeopleViewController.swift */; };
 		4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */; };
 		4A325E5C1E87AC9500F9680B /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E5B1E87AC9500F9680B /* FollowApi.swift */; };
@@ -55,6 +56,7 @@
 		4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		4A1A7D751E7809E400933915 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		4A313E951E93E9D1000657AE /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4A325E571E87A06D00F9680B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4A325E5B1E87AC9500F9680B /* FollowApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				4AE117601E8BC3C800DAA8A2 /* SearchViewController.swift */,
 				4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */,
 				4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */,
+				4A313E951E93E9D1000657AE /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				4AE5BF561E75CFFD00E74137 /* SignUpViewController.swift in Sources */,
 				4A67DDFF1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift in Sources */,
 				4A6F505E1E75CA0500E4FC84 /* AppDelegate.swift in Sources */,
+				4A313E961E93E9D1000657AE /* DetailViewController.swift in Sources */,
 				4AE5BF541E75CC0000E74137 /* SignInViewController.swift in Sources */,
 				4A1A7D761E7809E400933915 /* AuthService.swift in Sources */,
 				4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */,
