@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--DetailViewController-->
+        <scene sceneID="C26-WQ-n8z">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="Qr0-5Q-gbl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M0L-1G-2zu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3456" y="2468"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="oXp-69-FnV">
             <objects>
@@ -202,6 +210,7 @@
                     <connections>
                         <outlet property="collectionView" destination="dPV-hX-xk0" id="pbu-5W-JhE"/>
                         <segue destination="7SI-Cr-ynS" kind="show" identifier="Profile_SettingSegue" id="jnq-Fz-d5Y"/>
+                        <segue destination="Qr0-5Q-gbl" kind="show" identifier="Profile_DetailSegue" id="vbH-rz-Kjx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKk-qN-RTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,6 +514,7 @@
                     <connections>
                         <outlet property="collectionView" destination="nj0-BT-MHO" id="as3-aQ-2VW"/>
                         <segue destination="7SI-Cr-ynS" kind="show" identifier="ProfileUser_SettingSegue" id="73n-78-YOa"/>
+                        <segue destination="Qr0-5Q-gbl" kind="show" identifier="ProfileUser_DetailSegue" id="ZE6-2v-nMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zse-iA-ac4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -697,6 +707,7 @@
         <image name="discover" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZE6-2v-nMf"/>
         <segue reference="73n-78-YOa"/>
     </inferredMetricsTieBreakers>
 </document>
