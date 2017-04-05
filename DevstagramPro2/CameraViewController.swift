@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import SVProgressHUD
 //import FirebaseStorage
 //import FirebaseDatabase
@@ -20,6 +21,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var removeButton: UIBarButtonItem!
     
     var selectedImage: UIImage?
+    var videoUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,7 @@ class CameraViewController: UIViewController {
     func handleSelectPhoto() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
+        pickerController.mediaTypes = ["public.image", "public.movie"]
         present(pickerController, animated: true, completion: nil)
     }
     
@@ -133,6 +136,14 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        if let videoUrl = info["UIImagePickerControllerMediaURL"] as? URL {
+            if let thumbnailImage = self.thumbnailImageForFileUrl(videoUrl) {
+                selectedImage = thumbnailImage
+                photo.image = thumbnailImage
+                self.videoUrl = videoUrl
+            }
+        }
+        
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             photo.image = image
             selectedImage = image
@@ -142,5 +153,18 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         
     }
     
+    func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
+        let asset = AVAsset(url: fileUrl)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        do {
+          let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(2, 1), actualTime: nil)
+            return UIImage(cgImage: thumbnailCGImage)
+        } catch let err {
+            print(err)
+        }
+        
+        return nil
+    }
     
 }
