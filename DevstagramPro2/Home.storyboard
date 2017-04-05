@@ -162,7 +162,7 @@
         <!--Comment View Controller-->
         <scene sceneID="S8b-eN-uhp">
             <objects>
-                <viewController id="4cq-5G-nc3" customClass="CommentViewController" customModule="DevstagramPro2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="4cq-5G-nc3" customClass="CommentViewController" customModule="DevstagramPro2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jKx-ZR-XLf"/>
                         <viewControllerLayoutGuide type="bottom" id="Von-fn-aUu"/>
@@ -337,6 +337,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pCE-E3-5cR"/>
+        <segue reference="EfM-mq-BHW"/>
     </inferredMetricsTieBreakers>
 </document>

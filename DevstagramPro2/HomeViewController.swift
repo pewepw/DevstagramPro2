@@ -107,10 +107,10 @@ class HomeViewController: UIViewController {
         }
         
         Api.Feed.observeFeed(withUserId: Api.User.CURRENT_USER!.uid) { (post) in
-            guard let postId = post.uid else {
+            guard let postUid = post.uid else {
                 return
             }
-            self.fetchUser(uid: postId, completed: { 
+            self.fetchUser(uid: postUid, completed: {
                 self.posts.append(post)
                 
                 self.activityIndicatorView.stopAnimating()

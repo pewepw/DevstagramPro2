@@ -141,6 +141,11 @@
                             <constraint firstItem="8mr-UC-XNh" firstAttribute="top" secondItem="rxX-5M-Uyh" secondAttribute="bottom" id="u6z-hX-7Ra"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="rxX-5M-Uyh" id="32c-xJ-sFF"/>
+                        <segue destination="ska-2l-orQ" kind="show" identifier="Detail_CommentSegue" id="b3O-Fh-1Y8"/>
+                        <segue destination="7dS-pn-15H" kind="show" identifier="Detail_ProfileUserSegue" id="f3c-1u-8d6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zf9-CY-e6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,6 +227,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gy3-1t-iTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="495" y="2057"/>
+        </scene>
+        <!--CommentViewController-->
+        <scene sceneID="EfA-td-Got">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="CommentViewController" id="ska-2l-orQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="crS-C2-E0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1006" y="1904"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="5gL-kS-HRl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="7dS-pn-15H" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNE-Cy-cyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1014" y="2107"/>
         </scene>
         <!--ProfileUserViewController-->
         <scene sceneID="Dd8-V8-eFb">
