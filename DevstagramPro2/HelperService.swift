@@ -12,8 +12,44 @@ import SVProgressHUD
 
 class HelperService {
     
-    static func uploadDataToServer(data: Data, caption: String, onSucess: @escaping () -> Void) {
+    static func uploadDataToServer(data: Data, videoUrl: URL? = nil, caption: String, onSuccess: @escaping () -> Void) {
+        if let videoUrl = videoUrl {
+            self.uploadVideoToFirebaseStorage(videoUrl: videoUrl, onSuccess: { (videoUrl) in
+                uploadImageToFirebaseStorage(data: data, onSuccess: { (thumbnailImageUrl) in
+                    sendDataToDatabase(photoUrl: thumbnailImageUrl, videoUrl: videoUrl, caption: caption, onSuccess: onSuccess)
+                })
+            })
+        } else {
+            uploadImageToFirebaseStorage(data: data) { (photoUrl) in
+                self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: onSuccess)
+                
+            }
+            
+            
+        }
         
+    }
+    
+    static func uploadVideoToFirebaseStorage(videoUrl: URL, onSuccess: @escaping(_ videoUrl: String) -> Void) {
+        let videoIdString = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("posts").child(videoIdString)
+        storageRef.putFile(videoUrl, metadata: nil) { (metadata, error) in
+            if error != nil {
+                
+                SVProgressHUD.showError(withStatus: error!.localizedDescription)
+                
+                return
+            }
+            
+            if let videoUrl = metadata?.downloadURL()?.absoluteString {
+                onSuccess(videoUrl)
+            }
+
+        }
+
+    }
+    
+    static func uploadImageToFirebaseStorage(data: Data, onSuccess: @escaping(_ imageUrl: String) -> Void) {
         let photoIdString = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("posts").child(photoIdString)
         storageRef.put(data, metadata: nil) { (metadata, error) in
@@ -23,26 +59,29 @@ class HelperService {
                 
                 return
             }
+            if let photoUrl = metadata?.downloadURL()?.absoluteString {
+                onSuccess(photoUrl)
+            }
             
-            let photoUrl = metadata?.downloadURL()?.absoluteString
-            self.sendDataToDatabase(photoUrl: photoUrl!, caption: caption, onSuccess: onSucess)
-
-
         }
-
-
     }
     
-    
-    static func sendDataToDatabase(photoUrl: String, caption: String, onSuccess: @escaping () -> Void) {
+    static func sendDataToDatabase(photoUrl: String, videoUrl: String? = nil, caption: String, onSuccess: @escaping () -> Void) {
         let newPostId = Api.Post.REF_POST.childByAutoId().key
         let newPostReference = Api.Post.REF_POST.child(newPostId)
         
         guard let currentUser = Api.User.CURRENT_USER else {
             return
         }
+        
         let currentUserId = currentUser.uid
-        newPostReference.setValue(["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likeCount": 0]) { (error, ref) in
+        
+        var dict = ["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likeCount": 0] as [String : Any]
+        if let videoUrl = videoUrl {
+            dict["videoUrl"] = videoUrl
+        }
+        
+        newPostReference.setValue(dict) { (error, ref) in
             if error != nil {
                 
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
@@ -64,7 +103,7 @@ class HelperService {
             SVProgressHUD.showSuccess(withStatus: "Success")
             onSuccess()
         }
-
+        
     }
     
     
