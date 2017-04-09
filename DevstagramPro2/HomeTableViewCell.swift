@@ -68,7 +68,7 @@ class HomeTableViewCell: UITableViewCell {
             player?.play()
             player?.isMuted = isMuted
             //disable code below to show thumbnail
-            playerLayer?.backgroundColor = UIColor.black.cgColor
+            //playerLayer?.backgroundColor = UIColor.black.cgColor
             
         }
         

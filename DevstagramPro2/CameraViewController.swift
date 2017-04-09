@@ -130,6 +130,14 @@ class CameraViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Filter_Segue" {
+            let filterVC = segue.destination as! FilterViewController
+            filterVC.selectedImage = self.selectedImage
+            filterVC.delegate = self
+        }
+    }
+    
 }
 
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -169,4 +177,10 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         return nil
     }
     
+}
+
+extension CameraViewController: FilterViewControllerDelegate {
+    func updatePhoto(image: UIImage) {
+        self.photo.image = image
+    }
 }
