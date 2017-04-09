@@ -142,14 +142,16 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
                 photo.image = thumbnailImage
                 self.videoUrl = videoUrl
             }
+            dismiss(animated: true, completion: nil)
         }
         
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             photo.image = image
             selectedImage = image
+            dismiss(animated: true, completion: {
+                self.performSegue(withIdentifier: "Filter_Segue", sender: nil)
+            })
         }
-        
-        dismiss(animated: true, completion: nil)
         
     }
     
@@ -158,7 +160,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         do {
-          let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(10, 1), actualTime: nil)
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(10, 1), actualTime: nil)
             return UIImage(cgImage: thumbnailCGImage)
         } catch let err {
             print(err)

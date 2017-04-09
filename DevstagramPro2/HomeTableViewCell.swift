@@ -67,6 +67,8 @@ class HomeTableViewCell: UITableViewCell {
             self.volumeView.layer.zPosition = 1
             player?.play()
             player?.isMuted = isMuted
+            //disable code below to show thumbnail
+            playerLayer?.backgroundColor = UIColor.black.cgColor
             
         }
         

@@ -14,6 +14,8 @@
 		4A325E581E87A06D00F9680B /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E571E87A06D00F9680B /* PeopleViewController.swift */; };
 		4A325E5A1E87A0AB00F9680B /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */; };
 		4A325E5C1E87AC9500F9680B /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A325E5B1E87AC9500F9680B /* FollowApi.swift */; };
+		4A35A7D61E9A6ED3008C6248 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35A7D51E9A6ED3008C6248 /* FilterViewController.swift */; };
+		4A35A7D81E9A8758008C6248 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A35A7D71E9A8758008C6248 /* FilterCollectionViewCell.swift */; };
 		4A45BDCC1E76C1FF0095F1BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */; };
 		4A45BDCE1E76C2400095F1BB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCD1E76C2400095F1BB /* Home.storyboard */; };
 		4A45BDD01E76C2550095F1BB /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A45BDCF1E76C2550095F1BB /* Discover.storyboard */; };
@@ -60,6 +62,8 @@
 		4A325E571E87A06D00F9680B /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		4A325E5B1E87AC9500F9680B /* FollowApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
+		4A35A7D51E9A6ED3008C6248 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		4A35A7D71E9A8758008C6248 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A45BDCB1E76C1FF0095F1BB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4A45BDCD1E76C2400095F1BB /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4A45BDCF1E76C2550095F1BB /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				4A0109231E8C2A760058FD2A /* ProfileUserViewController.swift */,
 				4A10453F1E90AD4800D04FED /* SettingTableViewController.swift */,
 				4A313E951E93E9D1000657AE /* DetailViewController.swift */,
+				4A35A7D51E9A6ED3008C6248 /* FilterViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				4A67DDFE1E82E28F00A961FE /* HeaderProfileCollectionReusableView.swift */,
 				4A5264E51E83F5EE009ACFE8 /* PhotoCollectionViewCell.swift */,
 				4A325E591E87A0AB00F9680B /* PeopleTableViewCell.swift */,
+				4A35A7D71E9A8758008C6248 /* FilterCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -388,7 +394,9 @@
 				4AA33C051E8022FA0048DD6B /* Comment.swift in Sources */,
 				4AE5BF601E75DD5000E74137 /* ProfileViewController.swift in Sources */,
 				4AB37CB71E7E699C00552C38 /* CommentTableViewCell.swift in Sources */,
+				4A35A7D81E9A8758008C6248 /* FilterCollectionViewCell.swift in Sources */,
 				4AE5BF5C1E75DD2800E74137 /* CameraViewController.swift in Sources */,
+				4A35A7D61E9A6ED3008C6248 /* FilterViewController.swift in Sources */,
 				4A5264E41E83CBB9009ACFE8 /* MyPostsApi.swift in Sources */,
 				4ABF64EB1E8ACC960000A8B5 /* FeedApi.swift in Sources */,
 				4A0109241E8C2A760058FD2A /* ProfileUserViewController.swift in Sources */,
