@@ -158,7 +158,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         do {
-          let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(2, 1), actualTime: nil)
+          let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(10, 1), actualTime: nil)
             return UIImage(cgImage: thumbnailCGImage)
         } catch let err {
             print(err)

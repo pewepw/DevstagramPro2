@@ -18,6 +18,7 @@ class Post {
     var likeCount: Int?
     var likes: Dictionary<String, Any>?
     var isLiked: Bool?
+    var videoUrl: String?
     
 }
 
@@ -29,6 +30,7 @@ extension Post {
         post.id = key
         post.caption = dict["caption"] as? String
         post.photoUrl = dict["photoUrl"] as? String
+        post.videoUrl = dict["videoUrl"] as? String
         post.uid = dict["uid"] as? String
         post.likeCount = dict["likeCount"] as? Int
         post.likes = dict["likes"] as? Dictionary<String, Any>

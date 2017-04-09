@@ -89,6 +89,35 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view hidden="YES" alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faM-ek-F4E">
+                                                    <rect key="frame" x="10" y="345" width="24" height="24"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGl-Pq-UcI">
+                                                            <rect key="frame" x="6.5" y="6" width="12" height="12"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="12" id="4PJ-26-bXL"/>
+                                                                <constraint firstAttribute="height" constant="12" id="gpl-Mt-Oqm"/>
+                                                            </constraints>
+                                                            <state key="normal" image="Icon_Mute"/>
+                                                            <connections>
+                                                                <action selector="volumeBtn_TouchUpInside:" destination="1GB-F6-1wg" eventType="touchUpInside" id="i4f-Rk-k2s"/>
+                                                                <action selector="volumeButton_TouchUpInside:" destination="1GB-F6-1wg" eventType="touchUpInside" id="9y0-lr-NAD"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="6tB-00-Yc5"/>
+                                                        <constraint firstAttribute="width" constant="24" id="9ZN-Wr-Xcj"/>
+                                                        <constraint firstItem="TGl-Pq-UcI" firstAttribute="centerY" secondItem="faM-ek-F4E" secondAttribute="centerY" id="Wqs-Za-RBs"/>
+                                                        <constraint firstItem="TGl-Pq-UcI" firstAttribute="centerX" secondItem="faM-ek-F4E" secondAttribute="centerX" id="nbD-Op-ZRE"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iUz-m7-zvO" firstAttribute="top" secondItem="8Lc-x8-bhM" secondAttribute="bottom" constant="5" id="1gr-zY-IaO"/>
@@ -99,6 +128,7 @@
                                                 <constraint firstItem="8Lc-x8-bhM" firstAttribute="top" secondItem="zXr-JY-tFt" secondAttribute="bottom" constant="5" id="DwC-a9-HmS"/>
                                                 <constraint firstItem="zXr-JY-tFt" firstAttribute="leading" secondItem="R5M-oQ-oD2" secondAttribute="leading" constant="15" id="GWE-QG-vdb"/>
                                                 <constraint firstItem="iUz-m7-zvO" firstAttribute="leading" secondItem="R5M-oQ-oD2" secondAttribute="leading" constant="15" id="KN6-Fu-tjU"/>
+                                                <constraint firstItem="faM-ek-F4E" firstAttribute="bottom" secondItem="CwJ-oh-JJu" secondAttribute="bottom" constant="-10" id="NrZ-PW-IlA"/>
                                                 <constraint firstItem="2y3-Ed-4cd" firstAttribute="leading" secondItem="fxA-2q-U9E" secondAttribute="trailing" constant="8" id="OVp-In-06U"/>
                                                 <constraint firstAttribute="trailing" secondItem="zXr-JY-tFt" secondAttribute="trailing" id="Oa7-iO-i4F"/>
                                                 <constraint firstAttribute="trailing" secondItem="iUz-m7-zvO" secondAttribute="trailing" constant="15" id="OyY-py-ypF"/>
@@ -113,6 +143,7 @@
                                                 <constraint firstItem="2y3-Ed-4cd" firstAttribute="centerY" secondItem="fxA-2q-U9E" secondAttribute="centerY" id="ltg-F6-Ryt"/>
                                                 <constraint firstItem="G2P-bA-tV0" firstAttribute="centerY" secondItem="57c-Ga-SzR" secondAttribute="centerY" id="o29-Hd-T0v"/>
                                                 <constraint firstAttribute="trailing" secondItem="CwJ-oh-JJu" secondAttribute="trailing" id="oxx-uP-c0e"/>
+                                                <constraint firstItem="faM-ek-F4E" firstAttribute="leading" secondItem="CwJ-oh-JJu" secondAttribute="leading" constant="10" id="r9y-nN-vgy"/>
                                                 <constraint firstItem="CwJ-oh-JJu" firstAttribute="top" secondItem="fxA-2q-U9E" secondAttribute="bottom" constant="8" id="rPf-GW-cxc"/>
                                                 <constraint firstItem="57c-Ga-SzR" firstAttribute="leading" secondItem="wvH-nu-Hqc" secondAttribute="trailing" constant="20" id="rVU-j2-wIU"/>
                                                 <constraint firstItem="zXr-JY-tFt" firstAttribute="top" secondItem="G2P-bA-tV0" secondAttribute="bottom" constant="15" id="tGw-d4-8Id"/>
@@ -128,6 +159,8 @@
                                             <outlet property="postImageView" destination="CwJ-oh-JJu" id="c5g-ca-uTV"/>
                                             <outlet property="profileImageView" destination="fxA-2q-U9E" id="qvS-Qk-f3J"/>
                                             <outlet property="shareImageView" destination="G2P-bA-tV0" id="w95-cl-uql"/>
+                                            <outlet property="volumeButton" destination="TGl-Pq-UcI" id="LS0-Cf-3qm"/>
+                                            <outlet property="volumeView" destination="faM-ek-F4E" id="sr2-hI-iVz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -275,7 +308,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gN-O6-IdJ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gN-O6-IdJ">
                                                     <rect key="frame" x="15" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="nO4-4m-oMZ"/>
@@ -367,6 +400,7 @@
     </scenes>
     <resources>
         <image name="Comment" width="43" height="41"/>
+        <image name="Icon_Mute" width="25" height="25"/>
         <image name="Search" width="23" height="22"/>
         <image name="Search_Selected" width="23" height="22"/>
         <image name="ava" width="1290" height="1290"/>

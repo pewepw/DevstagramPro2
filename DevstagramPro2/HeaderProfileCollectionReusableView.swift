@@ -45,6 +45,12 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     //
     //       }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        clear()
+    }
+    
     func updateView() {
         self.nameLabel.text = user?.username
         if let photoUrlString = user?.profileImageUrl {
@@ -71,6 +77,13 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             updateStateFollowButton()
             
         }
+    }
+    
+    func clear() {
+        self.nameLabel.text = ""
+        self.myPostCountLabel.text = ""
+        self.followingsCountLabel.text = ""
+        self.followersCountLabel.text = ""
     }
     
     func goToSettingVC() {

@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 510
+        tableView.rowHeight = UITableViewAutomaticDimension
 
         loadPost()
     }

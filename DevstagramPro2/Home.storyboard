@@ -90,6 +90,34 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zek-jq-3W4">
+                                                    <rect key="frame" x="10" y="345" width="24" height="24"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fm-IU-PHB">
+                                                            <rect key="frame" x="6.5" y="6" width="12" height="12"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="12" id="7bU-Mc-Npk"/>
+                                                                <constraint firstAttribute="width" constant="12" id="pkY-iW-3f1"/>
+                                                            </constraints>
+                                                            <state key="normal" image="Icon_Mute"/>
+                                                            <connections>
+                                                                <action selector="volumeButton_TouchUpInside:" destination="JZS-uY-7B4" eventType="touchUpInside" id="ffk-OB-PNr"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="8fm-IU-PHB" firstAttribute="centerY" secondItem="zek-jq-3W4" secondAttribute="centerY" id="9c7-QQ-kiw"/>
+                                                        <constraint firstAttribute="height" constant="24" id="Npe-RK-4Ny"/>
+                                                        <constraint firstAttribute="width" constant="24" id="Thf-au-ajB"/>
+                                                        <constraint firstItem="8fm-IU-PHB" firstAttribute="centerX" secondItem="zek-jq-3W4" secondAttribute="centerX" id="qBh-y0-M3l"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="sqz-lz-ven" firstAttribute="leading" secondItem="zMn-nX-4vv" secondAttribute="leading" constant="15" id="0db-qz-BBk"/>
@@ -98,8 +126,10 @@
                                                 <constraint firstItem="6rv-mA-k27" firstAttribute="height" secondItem="RbS-SY-z2V" secondAttribute="height" id="AX2-FE-gv6"/>
                                                 <constraint firstItem="sqz-lz-ven" firstAttribute="top" secondItem="zMn-nX-4vv" secondAttribute="top" constant="15" id="CGT-Z4-GQF"/>
                                                 <constraint firstAttribute="trailing" secondItem="YmQ-Rh-svR" secondAttribute="trailing" constant="15" id="EqF-uK-huw"/>
+                                                <constraint firstItem="zek-jq-3W4" firstAttribute="bottom" secondItem="Cmz-Re-t3L" secondAttribute="bottom" constant="-10" id="FHT-FR-PlN"/>
                                                 <constraint firstItem="64P-5E-m2Z" firstAttribute="leading" secondItem="zMn-nX-4vv" secondAttribute="leading" constant="15" id="Kp9-Ft-gBb"/>
                                                 <constraint firstItem="Cmz-Re-t3L" firstAttribute="top" secondItem="sqz-lz-ven" secondAttribute="bottom" constant="8" id="LeO-xN-JHy"/>
+                                                <constraint firstItem="zek-jq-3W4" firstAttribute="leading" secondItem="Cmz-Re-t3L" secondAttribute="leading" constant="10" id="M63-cb-c0p"/>
                                                 <constraint firstItem="YmQ-Rh-svR" firstAttribute="leading" secondItem="zMn-nX-4vv" secondAttribute="leading" constant="15" id="PH2-zU-qHh"/>
                                                 <constraint firstItem="6rv-mA-k27" firstAttribute="centerY" secondItem="RbS-SY-z2V" secondAttribute="centerY" id="Pic-AG-Ft2"/>
                                                 <constraint firstItem="RbS-SY-z2V" firstAttribute="height" secondItem="9v0-vi-2gh" secondAttribute="height" id="ZQf-CL-vhs"/>
@@ -129,6 +159,8 @@
                                             <outlet property="postImageView" destination="Cmz-Re-t3L" id="O74-m2-vy8"/>
                                             <outlet property="profileImageView" destination="sqz-lz-ven" id="SH7-xK-jXv"/>
                                             <outlet property="shareImageView" destination="6rv-mA-k27" id="skd-DD-O6a"/>
+                                            <outlet property="volumeButton" destination="8fm-IU-PHB" id="gW4-83-0sD"/>
+                                            <outlet property="volumeView" destination="zek-jq-3W4" id="zGI-KD-uWH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -182,7 +214,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-OF-zju">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-OF-zju">
                                                     <rect key="frame" x="15" y="15" width="36" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="QT3-4x-LSh"/>
@@ -332,11 +364,12 @@
         <image name="Comment" width="43" height="41"/>
         <image name="Home" width="21" height="23"/>
         <image name="Home_Selected" width="21" height="23"/>
+        <image name="Icon_Mute" width="25" height="25"/>
         <image name="ava" width="1290" height="1290"/>
         <image name="like" width="46" height="41"/>
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EfM-mq-BHW"/>
+        <segue reference="pCE-E3-5cR"/>
     </inferredMetricsTieBreakers>
 </document>

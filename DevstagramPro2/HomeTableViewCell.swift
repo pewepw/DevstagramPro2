@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import SVProgressHUD
 protocol HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
@@ -25,8 +26,12 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var shareImageView: UIImageView!
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var volumeView: UIView!
+    @IBOutlet weak var volumeButton: UIButton!
     
     var delegate: HomeTableViewCellDelegate?
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
     //var homeVC: HomeViewController?
     
     var post: Post? {
@@ -41,6 +46,8 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
     
+    var isMuted = true
+    
     func updateView() {
         
         captionLabel.text = post?.caption
@@ -50,6 +57,18 @@ class HomeTableViewCell: UITableViewCell {
             postImageView.sd_setImage(with: photoUrl)
         }
         
+        if let videoUrlString = post?.videoUrl, let videoUrl = URL(string: videoUrlString) {
+            
+            self.volumeView.isHidden = false
+            player = AVPlayer(url: videoUrl)
+            playerLayer = AVPlayerLayer(player: player)
+            playerLayer?.frame = postImageView.frame
+            self.contentView.layer.addSublayer(playerLayer!)
+            self.volumeView.layer.zPosition = 1
+            player?.play()
+            player?.isMuted = isMuted
+            
+        }
         
             self.updateLike(post: self.post!)
         
@@ -68,6 +87,20 @@ class HomeTableViewCell: UITableViewCell {
 
         
     }
+    
+    @IBAction func volumeButton_TouchUpInside(_ sender: UIButton) {
+        if isMuted {
+            isMuted = !isMuted
+            volumeButton.setImage(UIImage(named: "Icon_Volume") , for: .normal)
+        } else {
+            isMuted = !isMuted
+            volumeButton.setImage(UIImage(named: "Icon_Mute") , for: .normal)
+        }
+        player?.isMuted = isMuted
+    }
+    
+
+    
     
     func updateLike(post: Post) {
         let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
@@ -163,7 +196,10 @@ class HomeTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        volumeView.isHidden = true
         profileImageView.image = UIImage(named: "ava")
+        playerLayer?.removeFromSuperlayer()
+        player?.pause()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
