@@ -12,16 +12,16 @@ import SVProgressHUD
 
 class HelperService {
     
-    static func uploadDataToServer(data: Data, videoUrl: URL? = nil, caption: String, onSuccess: @escaping () -> Void) {
+    static func uploadDataToServer(data: Data, videoUrl: URL? = nil, caption: String, ratio: CGFloat, onSuccess: @escaping () -> Void) {
         if let videoUrl = videoUrl {
             self.uploadVideoToFirebaseStorage(videoUrl: videoUrl, onSuccess: { (videoUrl) in
                 uploadImageToFirebaseStorage(data: data, onSuccess: { (thumbnailImageUrl) in
-                    sendDataToDatabase(photoUrl: thumbnailImageUrl, videoUrl: videoUrl, caption: caption, onSuccess: onSuccess)
+                    sendDataToDatabase(photoUrl: thumbnailImageUrl, videoUrl: videoUrl, caption: caption, ratio: ratio, onSuccess: onSuccess)
                 })
             })
         } else {
             uploadImageToFirebaseStorage(data: data) { (photoUrl) in
-                self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, onSuccess: onSuccess)
+                self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, ratio: ratio, onSuccess: onSuccess)
                 
             }
             
@@ -66,7 +66,7 @@ class HelperService {
         }
     }
     
-    static func sendDataToDatabase(photoUrl: String, videoUrl: String? = nil, caption: String, onSuccess: @escaping () -> Void) {
+    static func sendDataToDatabase(photoUrl: String, videoUrl: String? = nil, caption: String, ratio: CGFloat, onSuccess: @escaping () -> Void) {
         let newPostId = Api.Post.REF_POST.childByAutoId().key
         let newPostReference = Api.Post.REF_POST.child(newPostId)
         
@@ -76,7 +76,7 @@ class HelperService {
         
         let currentUserId = currentUser.uid
         
-        var dict = ["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likeCount": 0] as [String : Any]
+        var dict = ["uid": currentUserId, "photoUrl": photoUrl, "caption": caption, "likeCount": 0, "ratio": ratio] as [String : Any]
         if let videoUrl = videoUrl {
             dict["videoUrl"] = videoUrl
         }

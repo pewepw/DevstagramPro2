@@ -6,7 +6,7 @@
 //  Copyright © 2017 DevConcept. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import FirebaseAuth
 
 class Post {
@@ -19,6 +19,7 @@ class Post {
     var likes: Dictionary<String, Any>?
     var isLiked: Bool?
     var videoUrl: String?
+    var ratio: CGFloat?
     
 }
 
@@ -34,6 +35,7 @@ extension Post {
         post.uid = dict["uid"] as? String
         post.likeCount = dict["likeCount"] as? Int
         post.likes = dict["likes"] as? Dictionary<String, Any>
+        post.ratio = dict["ratio"] as? CGFloat
         if let currentUserId = FIRAuth.auth()?.currentUser?.uid {
             if post.likes != nil {
                 if post.likes?[currentUserId] != nil {

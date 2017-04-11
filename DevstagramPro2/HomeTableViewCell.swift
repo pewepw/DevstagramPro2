@@ -28,6 +28,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var volumeView: UIView!
     @IBOutlet weak var volumeButton: UIButton!
+    @IBOutlet weak var heightConstraintPhoto: NSLayoutConstraint!
     
     var delegate: HomeTableViewCellDelegate?
     var player: AVPlayer?
@@ -52,6 +53,11 @@ class HomeTableViewCell: UITableViewCell {
         
         captionLabel.text = post?.caption
         
+        if let ratio = post?.ratio {
+            heightConstraintPhoto.constant = UIScreen.main.bounds.width / ratio
+            layoutIfNeeded()
+        }
+        
         if let photoUrlString = post?.photoUrl {
             let photoUrl = URL(string: photoUrlString)
             postImageView.sd_setImage(with: photoUrl)
@@ -63,6 +69,7 @@ class HomeTableViewCell: UITableViewCell {
             player = AVPlayer(url: videoUrl)
             playerLayer = AVPlayerLayer(player: player)
             playerLayer?.frame = postImageView.frame
+            playerLayer?.frame.size.width = UIScreen.main.bounds.width
             self.contentView.layer.addSublayer(playerLayer!)
             self.volumeView.layer.zPosition = 1
             player?.play()

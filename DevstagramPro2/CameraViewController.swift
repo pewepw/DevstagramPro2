@@ -70,7 +70,8 @@ class CameraViewController: UIViewController {
         SVProgressHUD.show()
         
         if let profileImg = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
-            HelperService.uploadDataToServer(data: imageData, videoUrl: self.videoUrl, caption: captionTextView.text!, onSuccess: {
+            let ratio = profileImg.size.width / profileImg.size.height
+            HelperService.uploadDataToServer(data: imageData, videoUrl: self.videoUrl, caption: captionTextView.text!, ratio: ratio, onSuccess: {
                 self.clean()
                 self.tabBarController?.selectedIndex = 0
             })

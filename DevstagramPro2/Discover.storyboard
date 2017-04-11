@@ -53,7 +53,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CwJ-oh-JJu">
                                                     <rect key="frame" x="0.0" y="59" width="375" height="320"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="320" id="3JV-eP-16s"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="320" id="3JV-eP-16s"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="wvH-nu-Hqc">
@@ -93,7 +93,7 @@
                                                     <rect key="frame" x="10" y="345" width="24" height="24"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGl-Pq-UcI">
-                                                            <rect key="frame" x="7" y="6" width="12" height="12"/>
+                                                            <rect key="frame" x="6" y="6" width="12" height="12"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="12" id="4PJ-26-bXL"/>
                                                                 <constraint firstAttribute="height" constant="12" id="gpl-Mt-Oqm"/>
@@ -153,6 +153,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="iUz-m7-zvO" id="lua-9z-Y1I"/>
                                             <outlet property="commentImageView" destination="57c-Ga-SzR" id="kf5-BJ-l2O"/>
+                                            <outlet property="heightConstraintPhoto" destination="3JV-eP-16s" id="1EZ-vN-yrG"/>
                                             <outlet property="likeCountButton" destination="8Lc-x8-bhM" id="QV5-yo-J2n"/>
                                             <outlet property="likeImageView" destination="wvH-nu-Hqc" id="DGs-ep-8XQ"/>
                                             <outlet property="nameLabel" destination="2y3-Ed-4cd" id="np1-AN-ohv"/>
@@ -321,7 +322,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLT-tv-8qh">
-                                                    <rect key="frame" x="90" y="32" width="39" height="18"/>
+                                                    <rect key="frame" x="90" y="31" width="39" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
