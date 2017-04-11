@@ -7,12 +7,11 @@
 //
 
 import UIKit
-//import FirebaseAuth
-//import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var user: User!
     var posts: [Post] = []
     
@@ -26,13 +25,12 @@ class ProfileViewController: UIViewController {
         fetchMyPosts()
         
     }
-
+    
     func fetchUser() {
         Api.User.observeCurrentUser { (user) in
             self.user = user
             self.navigationItem.title = user.username
             self.collectionView.reloadData()
-           
         }
     }
     
@@ -46,7 +44,6 @@ class ProfileViewController: UIViewController {
                 self.collectionView.reloadData()
             })
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,10 +57,7 @@ class ProfileViewController: UIViewController {
             let postId = sender as! String
             detailVC.postId = postId
         }
-
     }
-  
-
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
@@ -105,22 +99,26 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
 }
 
 extension ProfileViewController: HeaderProfileCollectionReusableViewDelegateSwitchSettingVC {
     func goToSettingVC() {
         performSegue(withIdentifier: "Profile_SettingSegue", sender: nil)
     }
+    
 }
 
 extension ProfileViewController: SettingTableViewControllerDelegate {
     func updateUserInfo() {
         self.fetchUser()
     }
+    
 }
 
 extension ProfileViewController: PhotoCollectionViewCellDelegate {
     func goToDetailVC(postId: String) {
         performSegue(withIdentifier: "Profile_DetailSegue", sender: postId)
     }
+    
 }

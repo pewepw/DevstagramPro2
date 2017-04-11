@@ -19,7 +19,6 @@ class CommentApi {
                 let newComment = Comment.transformComment(dict: dict)
                 completion(newComment)
             }
-            
         })
     }
     

@@ -12,7 +12,5 @@ import FirebaseDatabase
 class Post_CommentApi {
     
     var REF_POST_COMMENTS = FIRDatabase.database().reference().child("post-comments")
-    
 
-    
 }

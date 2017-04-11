@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import FirebaseAuth
 import SVProgressHUD
 
 class SignInViewController: UIViewController {
@@ -86,11 +85,9 @@ class SignInViewController: UIViewController {
             self.performSegue(withIdentifier: "signInToTabbarVC", sender: nil)
         }, onError: { error in
             SVProgressHUD.showError(withStatus: error!)
-            
         })
-        
-        
     }
+    
 }
 
 

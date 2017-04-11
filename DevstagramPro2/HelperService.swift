@@ -22,12 +22,8 @@ class HelperService {
         } else {
             uploadImageToFirebaseStorage(data: data) { (photoUrl) in
                 self.sendDataToDatabase(photoUrl: photoUrl, caption: caption, ratio: ratio, onSuccess: onSuccess)
-                
             }
-            
-            
         }
-        
     }
     
     static func uploadVideoToFirebaseStorage(videoUrl: URL, onSuccess: @escaping(_ videoUrl: String) -> Void) {
@@ -44,9 +40,7 @@ class HelperService {
             if let videoUrl = metadata?.downloadURL()?.absoluteString {
                 onSuccess(videoUrl)
             }
-
         }
-
     }
     
     static func uploadImageToFirebaseStorage(data: Data, onSuccess: @escaping(_ imageUrl: String) -> Void) {
@@ -59,10 +53,10 @@ class HelperService {
                 
                 return
             }
+            
             if let photoUrl = metadata?.downloadURL()?.absoluteString {
                 onSuccess(photoUrl)
             }
-            
         }
     }
     
@@ -86,7 +80,6 @@ class HelperService {
                 
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
                 return
-                
             }
             
             Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
@@ -99,14 +92,9 @@ class HelperService {
                 }
             })
             
-            
             SVProgressHUD.showSuccess(withStatus: "Success")
             onSuccess()
         }
-        
     }
-    
-    
-    
     
 }

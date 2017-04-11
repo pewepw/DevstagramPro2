@@ -17,7 +17,6 @@ class MyPostsApi {
         REF_MYPOSTS.child(userId).observe(.childAdded, with: { (snapshot) in
             completion(snapshot.key)
         })
-        
     }
     
     func fetchCountMyPosts(userId: String, completion: @escaping (Int) -> Void) {
@@ -26,6 +25,5 @@ class MyPostsApi {
             completion(count)
         })
     }
-    
     
 }

@@ -12,12 +12,11 @@ protocol PeopleTableViewCellDelegate {
 }
 
 class PeopleTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    //var peopleVC: PeopleViewController?
     var delegate: PeopleTableViewCellDelegate?
     
     var user: User? {
@@ -39,18 +38,7 @@ class PeopleTableViewCell: UITableViewCell {
             configureFollowButton()
         }
         
-//        Api.Follow.isFollowing(userId: user!.id!) { (value) in
-//            if value == true {
-//                self.configureUnFollowButton()
-//           } else {
-//               self.configureFollowButton()
-//           }
-//       }
     }
-    
-    
-        
-
     
     func configureFollowButton() {
         followButton.layer.borderWidth = 1
@@ -76,16 +64,12 @@ class PeopleTableViewCell: UITableViewCell {
         followButton.addTarget(self, action: #selector(self.unFollowAction), for: UIControlEvents.touchUpInside)
     }
     
-    
-    
     func followAction() {
         if user!.isFollowing! == false {
             Api.Follow.followAction(withUser: user!.id!)
             configureUnFollowButton()
             user!.isFollowing = true
         }
-        
-        
     }
     
     func unFollowAction() {
@@ -94,10 +78,7 @@ class PeopleTableViewCell: UITableViewCell {
             configureFollowButton()
             user!.isFollowing = false
         }
-        
-        
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -111,15 +92,13 @@ class PeopleTableViewCell: UITableViewCell {
     func nameLabel_TouchUpInside() {
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
-            //peopleVC?.performSegue(withIdentifier: "ProfileSegue", sender: id)
         }
-        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

@@ -7,9 +7,6 @@
 //
 
 import UIKit
-//import FirebaseAuth
-//import FirebaseDatabase
-//import FirebaseStorage
 import SVProgressHUD
 
 class SignUpViewController: UIViewController {
@@ -133,7 +130,6 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         }
         
         dismiss(animated: true, completion: nil)
-        
     }
     
 }

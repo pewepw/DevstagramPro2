@@ -10,14 +10,14 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView!
+    
     var searchBar = UISearchBar()
     var users: [User] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         
         searchBar.delegate = self
@@ -31,7 +31,7 @@ class SearchViewController: UIViewController {
         doSearch()
         
     }
-
+    
     func doSearch() {
         if let searchText = searchBar.text?.lowercased() {
             self.users.removeAll()
@@ -43,12 +43,11 @@ class SearchViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             })
-            
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if segue.identifier == "Search_ProfileSegue" {
             let profileVC = segue.destination as! ProfileUserViewController
             let userId = sender as! String
@@ -56,9 +55,6 @@ class SearchViewController: UIViewController {
             profileVC.delegate = self
         }
     }
-
- 
-
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -66,10 +62,10 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         doSearch()
     }
-    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        doSearch()
-//    }
+            //live search
+//            func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//                doSearch()
+//            }
     
 }
 
@@ -93,6 +89,7 @@ extension SearchViewController: PeopleTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Search_ProfileSegue", sender: userId)
     }
+    
 }
 
 extension SearchViewController: HeaderProfileCollectionReusableViewDelegate {
@@ -104,4 +101,5 @@ extension SearchViewController: HeaderProfileCollectionReusableViewDelegate {
             }
         }
     }
+    
 }

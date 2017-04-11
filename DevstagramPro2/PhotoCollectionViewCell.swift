@@ -28,7 +28,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             photo.sd_setImage(with: photoUrl)
         }
         
-        
         let tapGestureForPhoto = UITapGestureRecognizer(target: self, action: #selector(self.photo_TouchUpInside))
         photo.addGestureRecognizer(tapGestureForPhoto)
         photo.isUserInteractionEnabled = true
@@ -39,4 +38,5 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             delegate?.goToDetailVC(postId: id)
         }
     }
+    
 }

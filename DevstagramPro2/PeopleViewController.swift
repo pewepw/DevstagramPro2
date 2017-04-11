@@ -12,7 +12,7 @@ class PeopleViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var users: [User] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,22 +20,7 @@ class PeopleViewController: UIViewController {
         
         loadUsers()
     }
-
-//    func loadUsers() {
-//      Api.User.observeUsers { (user) in
-//        self.isFollowing(userId: user.id!, completed: { (value) in
-//            user.isFollowing = value
-//            self.users.append(user)
-//            self.tableView.reloadData()
-//       })
-//
-//        }
-//    }
-//
-//    func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
-//        Api.Follow.isFollowing(userId: userId, completed: completed)
-//    }
-
+    
     func loadUsers() {
         Api.User.observeUsers { (user) in
             self.isFollowing(userId: user.id!, completed: { (value) in
@@ -43,8 +28,7 @@ class PeopleViewController: UIViewController {
                 self.users.append(user)
                 self.tableView.reloadData()
             })
-       }
-
+        }
     }
     
     func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
@@ -59,9 +43,6 @@ class PeopleViewController: UIViewController {
             profileVC.delegate = self
         }
     }
-    
-
-
 }
 
 extension PeopleViewController: UITableViewDataSource {
@@ -75,7 +56,6 @@ extension PeopleViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.user = user
         cell.delegate = self
-        //cell.peopleVC = self
         return cell
     }
     
@@ -85,6 +65,7 @@ extension PeopleViewController: PeopleTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "ProfileSegue", sender: userId)
     }
+    
 }
 
 extension PeopleViewController: HeaderProfileCollectionReusableViewDelegate {
@@ -96,4 +77,5 @@ extension PeopleViewController: HeaderProfileCollectionReusableViewDelegate {
             }
         }
     }
+    
 }

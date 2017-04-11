@@ -12,7 +12,7 @@ protocol CommentTableViewCellDelegate {
 }
 
 class CommentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -30,7 +30,7 @@ class CommentTableViewCell: UITableViewCell {
             setupUserInfo()
         }
     }
-
+    
     func updateView() {
         
         commentLabel.text = comment?.commentText
@@ -46,11 +46,11 @@ class CommentTableViewCell: UITableViewCell {
             profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "ava"))
         }
     }
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
         nameLabel.text = ""
         commentLabel.text = ""
         
@@ -66,16 +66,16 @@ class CommentTableViewCell: UITableViewCell {
         }
         
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImageView.image = UIImage(named: "ava")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

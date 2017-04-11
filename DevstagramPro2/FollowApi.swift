@@ -24,7 +24,6 @@ class FollowApi {
         })
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(true)
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(true)
-
     }
     
     func unFollowAction(withUser id: String) {
@@ -35,7 +34,6 @@ class FollowApi {
                 }
             }
         })
-
         
         REF_FOLLOWERS.child(id).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
         REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(id).setValue(NSNull())
@@ -65,5 +63,4 @@ class FollowApi {
         })
     }
 
-    
 }

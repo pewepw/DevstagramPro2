@@ -16,12 +16,12 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
-
+    
     var delegate: SettingTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.title = "Edit Profile"
         usernameTextField.delegate = self
         emailTextField.delegate = self
@@ -29,7 +29,7 @@ class SettingTableViewController: UITableViewController {
         fetchCurrentUser()
         
     }
-
+    
     func fetchCurrentUser() {
         Api.User.observeCurrentUser { (user) in
             self.usernameTextField.text = user.username
@@ -37,22 +37,18 @@ class SettingTableViewController: UITableViewController {
             if let profileUrl = URL(string: user.profileImageUrl!) {
                 self.profileImage.sd_setImage(with: profileUrl)
             }
-            
         }
-        
-        
     }
-  
+    
     @IBAction func saveBtn_TouchUpInside(_ sender: Any) {
         if let profileImg = self.profileImage.image, let imageData = UIImageJPEGRepresentation(profileImg, 0.1) {
             SVProgressHUD.show(withStatus: "Saving...")
-            AuthService.updateUserInfo(username: usernameTextField.text!, email: emailTextField.text!, imageData: imageData, onSuccess: { 
+            AuthService.updateUserInfo(username: usernameTextField.text!, email: emailTextField.text!, imageData: imageData, onSuccess: {
                 SVProgressHUD.showSuccess(withStatus: "Success")
                 self.delegate?.updateUserInfo()
             }, onError: { (errorMessage) in
                 SVProgressHUD.showError(withStatus: errorMessage)
             })
-            
         }
     }
     
@@ -65,7 +61,6 @@ class SettingTableViewController: UITableViewController {
         }) { (errorMessage) in
             SVProgressHUD.showError(withStatus: errorMessage)
         }
-
     }
     
     @IBAction func changeProfileBtn_TouchUpInside(_ sender: Any) {
@@ -82,6 +77,7 @@ extension SettingTableViewController: UIImagePickerControllerDelegate, UINavigat
         }
         dismiss(animated: true, completion: nil)
     }
+    
 }
 
 extension SettingTableViewController: UITextFieldDelegate {
@@ -89,4 +85,5 @@ extension SettingTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
 }

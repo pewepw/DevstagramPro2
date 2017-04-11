@@ -19,6 +19,7 @@ class FilterViewController: UIViewController {
     var delegate: FilterViewControllerDelegate?
     
     var selectedImage: UIImage!
+    var context = CIContext(options: nil)
     var ciFilterName = [
         "CIPhotoEffectChrome",
         "CIPhotoEffectFade",
@@ -30,7 +31,6 @@ class FilterViewController: UIViewController {
         "CIPhotoEffectTransfer",
         "CISepiaTone",
         "CIVignette"]
-    var context = CIContext(options: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,6 @@ class FilterViewController: UIViewController {
     @IBAction func nextBtn_TouchUpInside(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         delegate?.updatePhoto(image: self.filterPhoto.image!)
-        
     }
     
     func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
@@ -92,7 +91,7 @@ extension FilterViewController: UICollectionViewDataSource, UICollectionViewDele
             let result = context.createCGImage(filteredImage, from: filteredImage.extent)
             self.filterPhoto.image = UIImage(cgImage: result!)
         }
-        
     }
+    
 }
 

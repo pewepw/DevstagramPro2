@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import FirebaseAuth
-//import FirebaseDatabase
 import SVProgressHUD
 import SDWebImage
 
@@ -20,10 +18,8 @@ class HomeViewController: UIViewController {
     var posts = [Post]()
     var users = [User]()
     
-    
     let logoImage = UIImageView()
     let subview = UIView()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +27,6 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 510
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-
         
         subview.backgroundColor = UIColor.black
         subview.frame.size.width = UIScreen.main.bounds.width
@@ -46,7 +40,6 @@ class HomeViewController: UIViewController {
         animatingLogo()
         
         loadPosts()
-        
         
     }
     
@@ -63,7 +56,6 @@ class HomeViewController: UIViewController {
                 }, completion: { (finished) in
                     if finished {
                         
-                        
                         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
                             self.logoImage.alpha = 0
                             self.subview.alpha = 0
@@ -72,31 +64,17 @@ class HomeViewController: UIViewController {
                         }, completion: nil)
                     }
                 })
-                
             }
         }
     }
     
-    
+    //after fetch user to array completed, append posts to posts array
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Api.User.observeUser(withId: uid) { (user) in
             self.users.append(user)
             completed()
         }
     }
-    
-    //    // after fetch user to array completed, append posts to posts array
-    //    func fetchUser(uid: String, completed: @escaping () -> Void) {
-    //        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-    //            if let dict = snapshot.value as? [String: Any] {
-    //                let user = User.transformUser(dict: dict)
-    //                self.users.append(user)
-    //                completed()
-    //            }
-    //
-    //        })
-    //
-    //    }
     
     func loadPosts() {
         
@@ -121,11 +99,11 @@ class HomeViewController: UIViewController {
         }
         
         Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
-//            for (index, post) in self.posts.enumerated() {
-//                if post.id == key {
-//                    self.posts.remove(at: index)
-//                }
-//            }
+//                        for (index, post) in self.posts.enumerated() {
+//                            if post.id == key {
+//                                self.posts.remove(at: index)
+//                            }
+//                        }
             
             self.posts = self.posts.filter { $0.id != post.id }
             self.users = self.users.filter { $0.id != post.uid }
@@ -134,47 +112,6 @@ class HomeViewController: UIViewController {
         }
         
     }
-    
-//    func loadPosts() {
-//
-//        activityIndicatorView.startAnimating()
-//
-//        Api.Post.observePosts { (post) in
-//            self.fetchUser(uid: post.uid!, completed: {
-//                self.posts.append(post)
-//
-//                self.activityIndicatorView.stopAnimating()
-//                self.activityIndicatorView.isHidden = true
-//
-//                self.tableView.reloadData()
-//            })
-//        }
-        
-        //        FIRDatabase.database().reference().child("posts").observe(.childAdded, with: { (snapshot) in
-        //            if let dict = snapshot.value as? [String: Any] {
-        //                let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
-        //
-        //                self.fetchUser(uid: newPost.uid!, completed: {
-        //                    self.posts.append(newPost)
-        //
-        //                    self.activityIndicatorView.stopAnimating()
-        //                    self.activityIndicatorView.isHidden = true
-        //
-        //                    self.tableView.reloadData()
-        //                })
-        //
-        //            }
-        //        })
-        //  }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //
-    //        self.tabBarController?.tabBar.isHidden = false
-    //
-    //    }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentSegue" {
@@ -204,7 +141,6 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.post = post
         cell.user = user
-        //cell.homeVC = self
         cell.delegate = self
         
         return cell
@@ -220,4 +156,5 @@ extension HomeViewController: HomeTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Home_ProfileSegue", sender: userId)
     }
+    
 }

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import FirebaseDatabase
-//import FirebaseAuth
 import SVProgressHUD
 
 class CommentViewController: UIViewController {
@@ -50,7 +48,6 @@ class CommentViewController: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-        //print(keyboardFrame)
         UIView.animate(withDuration: 0.3) {
             self.constraintToBottom.constant = keyboardFrame!.height
             self.view.layoutIfNeeded()
@@ -67,8 +64,6 @@ class CommentViewController: UIViewController {
     func loadComments() {
         
         Api.Post_Comment.REF_POST_COMMENTS.child(self.postId).observe(.childAdded, with: { (snapshot) in
-            //print("**********")
-            //print(snapshot.key)
             
             Api.Comment.observeComment(withPostId: snapshot.key, completion: { (comment) in
                 self.fetchUser(uid: comment.uid!, completed: {
@@ -76,23 +71,8 @@ class CommentViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             })
-            
         })
     }
-    
-    //            FIRDatabase.database().reference().child("comments").child(snapshot.key).observeSingleEvent(of: .value, with: { (snapshotComment) in
-    //                if let dict = snapshotComment.value as? [String: Any] {
-    //                    let newComment = Comment.transformComment(dict: dict)
-    //
-    //                    self.fetchUser(uid: newComment.uid!, completed: {
-    //                        self.comments.append(newComment)
-    //                        self.tableView.reloadData()
-    //                    })
-    //
-    //                }
-    //
-    //            })
-    
     
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Api.User.observeUser(withId: uid) { (user) in
@@ -100,17 +80,6 @@ class CommentViewController: UIViewController {
             completed()
         }
     }
-    //        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-    //            if let dict = snapshot.value as? [String: Any] {
-    //                let user = User.transformUser(dict: dict)
-    //                self.users.append(user)
-    //                completed()
-    //            }
-    //
-    //        })
-    
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -126,8 +95,6 @@ class CommentViewController: UIViewController {
     
     @IBAction func sendButton(_ sender: Any) {
         
-//        let ref = FIRDatabase.database().reference()
-//        let commentsReference = ref.child("comments")
         let commentsReference = Api.Comment.REF_COMMENTS
         let newCommentId = commentsReference.childByAutoId().key
         let newCommentsReference = commentsReference.child(newCommentId)
@@ -142,10 +109,8 @@ class CommentViewController: UIViewController {
                 
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
                 return
-                
             }
             
-//            let postCommentRef = FIRDatabase.database().reference().child("post-comments").child(self.postId).child(newCommentId)
             let postCommentRef = Api.Post_Comment.REF_POST_COMMENTS.child(self.postId).child(newCommentId)
             postCommentRef.setValue(true, withCompletionBlock: { (error, ref) in
                 if error != nil {
@@ -156,9 +121,7 @@ class CommentViewController: UIViewController {
             
             self.empty()
             self.view.endEditing(true)
-            
         }
-        
     }
     
     func empty() {
@@ -171,7 +134,6 @@ class CommentViewController: UIViewController {
         commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
     }
     
-    
     func textFieldDidChange() {
         if let commentText = commentTextField.text, !commentText.isEmpty {
             sendButton.setTitleColor(UIColor.black , for: .normal)
@@ -179,7 +141,6 @@ class CommentViewController: UIViewController {
             
             return
         }
-        
         
         sendButton.setTitleColor(UIColor.lightGray , for: .normal)
         sendButton.isEnabled = false
@@ -193,7 +154,6 @@ class CommentViewController: UIViewController {
             profileVC.userId = userId
         }
     }
-
 }
 
 extension CommentViewController: UITableViewDataSource {
@@ -220,4 +180,5 @@ extension CommentViewController: CommentTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
     }
+    
 }

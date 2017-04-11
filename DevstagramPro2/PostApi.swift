@@ -19,9 +19,7 @@ class PostApi {
                 let newPost = Post.transformPostPhoto(dict: dict, key: snapshot.key)
                 completion(newPost)
             }
-            
         })
-        
     }
     
     func observePost(withId id:String, completion: @escaping (Post) -> Void) {
@@ -30,7 +28,6 @@ class PostApi {
                 let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
                 completion(post)
             }
-            
         })
     }
     
@@ -39,7 +36,6 @@ class PostApi {
             if let value = snapshot.value as? Int {
                 completion(value)
             }
-            
         })
     }
     
@@ -47,7 +43,7 @@ class PostApi {
         REF_POST.queryOrdered(byChild: "likeCount").observeSingleEvent(of: .value, with: { (snapshot) in
             let arraySnapshot = (snapshot.children.allObjects as! [FIRDataSnapshot]).reversed()
             
-            //another way of for loop
+              //another way of for loop
 //            arraySnapshot.forEach({ (child) in
 //                if let dict = child.value as? [String: Any] {
 //                    let post = Post.transformPostPhoto(dict: dict, key: snapshot.key)
@@ -59,7 +55,6 @@ class PostApi {
                     let post = Post.transformPostPhoto(dict: dict, key: child.key)
                     completion(post)
                 }
-
             }
         })
     }
@@ -72,34 +67,34 @@ class PostApi {
                 likes = post["likes"] as? [String : Bool] ?? [:]
                 var likeCount = post["likeCount"] as? Int ?? 0
                 if let _ = likes[uid] {
-                    // Unstar the post and remove self from stars
+                   //Unstar the post and remove self from stars
                     likeCount -= 1
                     likes.removeValue(forKey: uid)
                 } else {
-                    // Star the post and add self to stars
+                    //Star the post and add self to stars
                     likeCount += 1
                     likes[uid] = true
                 }
                 post["likeCount"] = likeCount as AnyObject?
                 post["likes"] = likes as AnyObject?
                 
-                // Set value and report transaction success
+                //Set value and report transaction success
                 currentData.value = post
                 
                 return FIRTransactionResult.success(withValue: currentData)
             }
+            
             return FIRTransactionResult.success(withValue: currentData)
         }) { (error, committed, snapshot) in
             if let error = error {
                 onError(error.localizedDescription)
             }
+            
             if let dict = snapshot?.value as? [String: Any] {
                 let post = Post.transformPostPhoto(dict: dict, key: snapshot!.key)
                 onSuccess(post)
             }
         }
-
     }
-    
     
 }

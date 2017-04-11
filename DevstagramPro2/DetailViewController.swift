@@ -15,14 +15,14 @@ class DetailViewController: UIViewController {
     var postId = ""
     var post = Post()
     var user = User()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.estimatedRowHeight = 510
         tableView.rowHeight = UITableViewAutomaticDimension
-
+        
         loadPost()
     }
     
@@ -31,13 +31,13 @@ class DetailViewController: UIViewController {
             guard let postUid = post.uid else {
                 return
             }
-            self.fetchUser(uid: postUid, completed: { 
+            self.fetchUser(uid: postUid, completed: {
                 self.post = post
                 self.tableView.reloadData()
             })
         }
     }
-  
+    
     func fetchUser(uid: String, completed: @escaping () -> Void) {
         Api.User.observeUser(withId: uid) { (user) in
             self.user = user
@@ -58,7 +58,6 @@ class DetailViewController: UIViewController {
             profileVC.userId = userId
         }
     }
-
 }
 
 extension DetailViewController: UITableViewDataSource {
@@ -68,13 +67,14 @@ extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! HomeTableViewCell
-
+        
         cell.post = post
         cell.user = user
         cell.delegate = self
         
         return cell
     }
+    
 }
 
 extension DetailViewController: HomeTableViewCellDelegate {
@@ -85,4 +85,5 @@ extension DetailViewController: HomeTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Detail_ProfileUserSegue", sender: userId)
     }
+    
 }

@@ -13,8 +13,6 @@ protocol HomeTableViewCellDelegate {
     func goToCommentVC(postId: String)
     func goToProfileUserVC(userId: String)
 }
-//import FirebaseDatabase
-//import FirebaseAuth
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -33,7 +31,6 @@ class HomeTableViewCell: UITableViewCell {
     var delegate: HomeTableViewCellDelegate?
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
-    //var homeVC: HomeViewController?
     
     var post: Post? {
         didSet {
@@ -74,27 +71,10 @@ class HomeTableViewCell: UITableViewCell {
             self.volumeView.layer.zPosition = 1
             player?.play()
             player?.isMuted = isMuted
-            //disable code below to show thumbnail
-            //playerLayer?.backgroundColor = UIColor.black.cgColor
             
         }
         
-            self.updateLike(post: self.post!)
-        
-                
-
-        
-//        if let currentUser = FIRAuth.auth()?.currentUser {
-//            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-//                if let _ = snapshot.value as? NSNull {
-//                    self.likeImageView.image = UIImage(named: "like")
-//                } else {
-//                    self.likeImageView.image = UIImage(named: "likeSelected")
-//                }
-//            })
-//        }
-
-        
+        self.updateLike(post: self.post!)
     }
     
     @IBAction func volumeButton_TouchUpInside(_ sender: UIButton) {
@@ -108,20 +88,19 @@ class HomeTableViewCell: UITableViewCell {
         player?.isMuted = isMuted
     }
     
-
-    
-    
     func updateLike(post: Post) {
         let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
         likeImageView.image = UIImage(named: imageName)
-//        if post.isLiked == false {
-//            likeImageView.image = UIImage(named: "like")
-//        } else {
-//            likeImageView.image = UIImage(named: "likeSelected")
-//        }
+//                if post.likes == nil || !post.isLiked {
+//                    likeImageView.image = UIImage(named: "like")
+//                } else {
+//                    likeImageView.image = UIImage(named: "likeSelected")
+//                }
+        
         guard let count = post.likeCount else {
             return
         }
+        
         if count != 0 {
             likeCountButton.setTitle("\(count) likes", for: .normal)
         } else {
@@ -152,28 +131,23 @@ class HomeTableViewCell: UITableViewCell {
         let tapGestureForLikeImageView = UITapGestureRecognizer(target: self, action: #selector(HomeTableViewCell.likeImageView_TouchUpInside))
         likeImageView.addGestureRecognizer(tapGestureForLikeImageView)
         likeImageView.isUserInteractionEnabled = true
-
+        
         let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
         nameLabel.addGestureRecognizer(tapGestureForNameLabel)
         nameLabel.isUserInteractionEnabled = true
-
         
     }
     
     func nameLabel_TouchUpInside() {
         if let id = user?.id {
             delegate?.goToProfileUserVC(userId: id)
-            //peopleVC?.performSegue(withIdentifier: "ProfileSegue", sender: id)
         }
-        
     }
     
     func commentImageView_TouchUpInside() {
         if let id = post?.id {
             delegate?.goToCommentVC(postId: id)
-           // homeVC?.performSegue(withIdentifier: "CommentSegue", sender: id)
         }
-        
     }
     
     func likeImageView_TouchUpInside() {
@@ -185,23 +159,7 @@ class HomeTableViewCell: UITableViewCell {
         }) { (errorMessage) in
             SVProgressHUD.showError(withStatus: errorMessage)
         }
-
-        
-//        if let currentUser = FIRAuth.auth()?.currentUser {
-//            Api.User.REF_USERS.child(currentUser.uid).child("likes").child(post!.id!).observeSingleEvent(of: .value, with: { (snapshot) in
-//                if let _ = snapshot.value as? NSNull { //never like before then
-//                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).setValue(true) //should set value to true
-//                    self.likeImageView.image = UIImage(named: "likeSelected") //should set view should be "likeSelected"
-//                } else {
-//                    Api.User.REF_USERS.child(currentUser.uid).child("likes").child(self.post!.id!).removeValue()
-//                    self.likeImageView.image = UIImage(named: "like")
-//                }
-//            })
-//        }
-        
-        
     }
-    
     
     override func prepareForReuse() {
         super.prepareForReuse()

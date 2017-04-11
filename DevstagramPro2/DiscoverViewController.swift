@@ -46,11 +46,7 @@ class DiscoverViewController: UIViewController {
             detailVC.postId = postId
         }
     }
-    
-    
 }
-
-
 
 extension DiscoverViewController: UICollectionViewDataSource {
     
@@ -68,7 +64,6 @@ extension DiscoverViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
@@ -83,6 +78,7 @@ extension DiscoverViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
 }
 
 extension DiscoverViewController: PhotoCollectionViewCellDelegate {

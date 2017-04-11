@@ -32,18 +32,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             updateView()
         }
     }
-    //    func updateView() {
-    //        guard let currentUser = FIRAuth.auth()?.currentUser else {
-    //           return
-    //        }
-    //        Api.User.observeUser(withId: currentUser.uid) { (user) in
-    //            self.nameLabel.text = user.username
-    //            if let photoUrlString = user.profileImageUrl {
-    //                let photoUrl = URL(string: photoUrlString)
-    //                self.profileImage.sd_setImage(with: photoUrl)
-    //            }
-    //
-    //       }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -75,7 +63,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             followButton.addTarget(self, action: #selector(self.goToSettingVC), for: .touchUpInside)
         } else {
             updateStateFollowButton()
-            
         }
     }
     
@@ -122,8 +109,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
         followButton.addTarget(self, action: #selector(self.unFollowAction), for: UIControlEvents.touchUpInside)
     }
     
-    
-    
     func followAction() {
         if user!.isFollowing! == false {
             Api.Follow.followAction(withUser: user!.id!)
@@ -131,8 +116,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             user!.isFollowing = true
             delegate?.updateFollowButton(forUser: user!)
         }
-        
-        
     }
     
     func unFollowAction() {
@@ -142,8 +125,6 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             user!.isFollowing = false
             delegate?.updateFollowButton(forUser: user!)
         }
-        
-        
     }
     
 }

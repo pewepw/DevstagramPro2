@@ -28,7 +28,6 @@ class FeedApi {
             Api.Post.observePost(withId: key, completion: { (post) in
                 completion(post)
             })
-            
         })
     }
 

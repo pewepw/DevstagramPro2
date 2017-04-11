@@ -22,9 +22,7 @@ class AuthService {
                 onError(error!.localizedDescription)
                 return
             }
-            
             onSuccess()
-            
         })
     }
     
@@ -49,9 +47,6 @@ class AuthService {
                 
                 self.setUserInfomation(profileImageUrl: profileImageUrl!, username: username, email: email, uid: uid!, onSuccess: onSuccess)
             })
-            
-            
-            
         })
     }
     
@@ -81,9 +76,7 @@ class AuthService {
                     let profileImageUrl = metadata?.downloadURL()?.absoluteString
                     
                     self.updateDatabase(profileImageUrl: profileImageUrl!, username: username, email: email, onSuccess: onSuccess, onError: onError)
-                    
                 }
-                
             }
         })
         
@@ -110,8 +103,5 @@ class AuthService {
             onError(logoutError.localizedDescription)
         }
     }
-    
-    
-    
     
 }

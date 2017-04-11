@@ -33,7 +33,6 @@ class UserApi {
                 completion(user)
             }
         })
-
     }
     
     func observeUsers(completion: @escaping (User) -> Void) {
@@ -44,7 +43,6 @@ class UserApi {
                 if user.id! != Api.User.CURRENT_USER?.uid {
                     completion(user)
                 }
-                
             }
         })
     }
@@ -55,12 +53,9 @@ class UserApi {
                 let child = s as! FIRDataSnapshot
                 if let dict = child.value as? [String: Any] {
                     let user = User.transformUser(dict: dict, key: child.key)
-                        completion(user)
-                    
-                    
+                    completion(user)
                 }
             })
-
         })
     }
     
@@ -68,9 +63,10 @@ class UserApi {
         if let currentUser = FIRAuth.auth()?.currentUser {
             return currentUser
         }
+        
         return nil
     }
-
+    
     var REF_CURRENT_USER: FIRDatabaseReference? {
         guard let currentUser = FIRAuth.auth()?.currentUser else {
             return nil

@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileUserViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var user: User!
@@ -19,7 +19,7 @@ class ProfileUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -27,7 +27,7 @@ class ProfileUserViewController: UIViewController {
         fetchMyPosts()
         
     }
-
+    
     func fetchUser() {
         Api.User.observeUser(withId: userId) { (user) in
             self.isFollowing(userId: user.id!
@@ -37,9 +37,7 @@ class ProfileUserViewController: UIViewController {
                     self.navigationItem.title = user.username
                     self.collectionView.reloadData()
             })
-           
         }
-      
     }
     
     func isFollowing(userId: String, completed: @escaping (Bool) -> Void) {
@@ -53,9 +51,8 @@ class ProfileUserViewController: UIViewController {
                 self.collectionView.reloadData()
             })
         }
-        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ProfileUser_DetailSegue" {
             let detailVC = segue.destination as! DetailViewController
@@ -63,14 +60,12 @@ class ProfileUserViewController: UIViewController {
             detailVC.postId = postId
         }
     }
-
 }
 
 extension ProfileUserViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -92,6 +87,7 @@ extension ProfileUserViewController: UICollectionViewDataSource {
         
         return headerViewCell
     }
+    
 }
 
 extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
@@ -106,16 +102,19 @@ extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
 }
 
 extension ProfileUserViewController: HeaderProfileCollectionReusableViewDelegateSwitchSettingVC {
     func goToSettingVC() {
         performSegue(withIdentifier: "ProfileUser_SettingSegue", sender: nil)
     }
+    
 }
 
 extension ProfileUserViewController: PhotoCollectionViewCellDelegate {
     func goToDetailVC(postId: String) {
         performSegue(withIdentifier: "ProfileUser_DetailSegue", sender: postId)
     }
+    
 }
