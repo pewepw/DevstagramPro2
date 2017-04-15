@@ -27,6 +27,7 @@ class CommentViewController: UIViewController {
         
         title = "Comment"
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -176,9 +177,17 @@ extension CommentViewController: UITableViewDataSource {
     
 }
 
+extension CommentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        view.endEditing(true)
+    }
+}
+
 extension CommentViewController: CommentTableViewCellDelegate {
     func goToProfileUserVC(userId: String) {
         performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
     }
     
 }
+
+
